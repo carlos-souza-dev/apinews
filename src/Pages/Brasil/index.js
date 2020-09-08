@@ -1,31 +1,29 @@
 import React, {useEffect, useState} from "react";
-import "./App.css";
 
-import Card from "./Componets/Card";
-import {Header, Navbar, Button, Form } from "./styles";
+import Card from "../../Componets/Card";
 
 function Brasil() {
 
-  const APP_KEY = "d501b11233134baaab897ec69639ddd8";
+  const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
 
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('bitcoin');
 
   useEffect( () => {
     getRecipes();
-  }, [])
+  }, [query])
 
   const getRecipes = async () => {
-    const response = await fetch(`${BASE_API}everything?country=us&apiKey=${APP_KEY}`
+    const response = await fetch(`${BASE_API}top-headlines?country=pt&apiKey=${APP_KEY}`
     );
     const data = await response.json();
     setRecipes(data.articles);
-    console.log(data.articles[0].url)
   }
 
-
   return (
-    <div className="App">
+    <div>
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 

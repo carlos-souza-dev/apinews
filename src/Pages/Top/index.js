@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import Card from "../../Componets/Card";
 
-
-function Usa() {
+function Top () {
 
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
@@ -24,7 +23,7 @@ function Usa() {
   }
 
   return (
-    <div className="App">
+    <div>    
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 
@@ -39,4 +38,4 @@ function Usa() {
   );
 }
 
-export default Usa;
+export default Top;

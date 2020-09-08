@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-import Card from "../../Componets/Card";
+import Card  from "../../Componets/Card";
 
-
-function Usa() {
+function All () {
 
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
@@ -17,14 +16,14 @@ function Usa() {
   }, [query])
 
   const getRecipes = async () => {
-    const response = await fetch(`${BASE_API}top-headlines?country=us&apiKey=${APP_KEY}`
+    const response = await fetch(`${BASE_API}everything?q=bitcoin&apiKey=${APP_KEY}`
     );
     const data = await response.json();
     setRecipes(data.articles);
   }
 
   return (
-    <div className="App">
+    <div>    
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 
@@ -39,4 +38,4 @@ function Usa() {
   );
 }
 
-export default Usa;
+export default All;
