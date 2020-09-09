@@ -27,11 +27,13 @@ function Top () {
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 
-          key={recipe.title}
-          title={recipe.title}
-          image={recipe.urlToImage}  
-          description={recipe.description}
-          url={recipe.url} />
+        key={recipe.title}
+        title={recipe.title}
+        author={recipe.author}
+        image={recipe.urlToImage}  
+        description={recipe.description}
+        content={recipe.content}
+        url={recipe.url} />
       ))}
       </section>
     </div>

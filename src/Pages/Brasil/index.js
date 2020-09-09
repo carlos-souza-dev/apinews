@@ -27,10 +27,12 @@ function Brasil() {
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 
-          key={recipe.title}
+          kkey={recipe.title}
           title={recipe.title}
+          author={recipe.author}
           image={recipe.urlToImage}  
           description={recipe.description}
+          content={recipe.content}
           url={recipe.url} />
       ))}
       </section>

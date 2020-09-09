@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import Card  from "../../Componets/Card";
+import Modal from "../../Componets/Modal";
 
 function All () {
 
@@ -10,6 +11,7 @@ function All () {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('bitcoin');
+  // const []
 
   useEffect( () => {
     getRecipes();
@@ -20,7 +22,10 @@ function All () {
     );
     const data = await response.json();
     setRecipes(data.articles);
+    console.log(data.articles[2])
   }
+
+
 
   return (
     <div>    
@@ -29,8 +34,10 @@ function All () {
         <Card 
           key={recipe.title}
           title={recipe.title}
+          author={recipe.author}
           image={recipe.urlToImage}  
           description={recipe.description}
+          content={recipe.content}
           url={recipe.url} />
       ))}
       </section>

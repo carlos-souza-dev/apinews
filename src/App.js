@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+
+/* Componentes */
 import HeaderBar from "./Componets/Header"
 import All from "./Pages/All"
 import Brasil from "./Pages/Brasil"

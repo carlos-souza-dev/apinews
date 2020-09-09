@@ -30,8 +30,10 @@ function Usa() {
         <Card 
           key={recipe.title}
           title={recipe.title}
+          author={recipe.author}
           image={recipe.urlToImage}  
           description={recipe.description}
+          content={recipe.content}
           url={recipe.url} />
       ))}
       </section>
