@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
+const variable = {
+    primary: '#2B303A',
+    secundary: '#58A4B0',
+    colorbutton: '#D64933',
+
+    background: '#FFFFFF',
+    text: '#212121',
+}
+
 export const Header = styled.header `
     width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 32px;
-    background-color: teal;
+    background-color: ${variable.primary};
 
     nav {
         width: 50%;
@@ -18,6 +27,12 @@ export const Header = styled.header `
                 list-style: none;
                 color: #fff;
                 padding: 8px 15px;
+                transition: all .5s;
+                
+                &:hover {
+                    transition: all .5s;
+                    color: ${variable.colorbutton};
+                }
             }
         }
     }
@@ -32,10 +47,6 @@ export const Header = styled.header `
             margin: 0;
             border: 0;
             border-radius: 5px;
-
-            &:focus {
-                border: 3px solid green;
-            }
         }
     }
 `;

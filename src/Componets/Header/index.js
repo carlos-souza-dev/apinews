@@ -21,7 +21,6 @@ function HeaderBar() {
     );
     const data = await response.json();
     setRecipes(data.articles);
-    console.log(data.articles[0].url)
   }
 
   const updateSearch = e => {

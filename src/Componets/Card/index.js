@@ -3,6 +3,8 @@ import { StyleCard } from "./style";
 
 const Card = (props) => {
 
+
+
     return(
         <StyleCard >
             <h3>{props.title}</h3>

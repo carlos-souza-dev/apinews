@@ -22,19 +22,21 @@ function Top () {
     setRecipes(data.articles);
   }
 
+
   return (
     <div>    
       <section className="App__section">
       {recipes.map(recipe => (
         <Card 
-        key={recipe.title}
+        id={recipe.publishedAt}
+        key={recipe.publishedAt}
         title={recipe.title}
         author={recipe.author}
         image={recipe.urlToImage}  
         description={recipe.description}
         content={recipe.content}
-        url={recipe.url} />
-      ))}
+        url={recipe.url}/>
+        ))}
       </section>
     </div>
   );

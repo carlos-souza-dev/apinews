@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const variable = {
-    primary: '#00796B',
-    secundary: '#607D8B',
-    colorbutton: '#E91E63',
+    primary: '#2B303A',
+    secundary: '#58A4B0',
+    colorbutton: '#D64933',
 
     background: '#FFFFFF',
     text: '#212121',
