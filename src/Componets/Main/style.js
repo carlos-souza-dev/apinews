@@ -37,6 +37,10 @@ export const Header = styled.header `
         }
     }
 
+    span {
+        color: ${variable.secundary};
+    }
+
     form {
         width: 50%;
         text-align: right;

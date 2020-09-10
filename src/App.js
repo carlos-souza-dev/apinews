@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 /* Componentes */
-import HeaderBar from "./Componets/Header"
 import All from "./Pages/All"
 import Brasil from "./Pages/Brasil"
 import Usa from "./Pages/Usa"
@@ -14,7 +13,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <HeaderBar/>
         <Switch>
           <Route path="/" exact component={All}/>
           <Route path="/top" exact component={Top}/>
