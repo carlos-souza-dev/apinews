@@ -1,29 +1,29 @@
 import React, {useEffect, useState} from "react";
 
-import Modal from "../../Componets/Modal";
-import Main from "../../Componets/Main"
+import Main from "../../Componets/Main";
 
-function All () {
+
+function Usa () {
 
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
 
   const date = new Date();
-  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}pageSize=50`;
+  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('q=*&');
-  const [limit, setLimit] = useState('10');
+  const [query, setQuery] = useState('');
+  const [country, setCountry] = useState('country=fr');
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, limit])
+  }, [query, country])
 
   const getRecipes = async () => {
 
-    const response = await fetch( `${BASE_API}everything?${query}apiKey=${APP_KEY}&pageSize=50`
+    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -31,6 +31,7 @@ function All () {
 
   const updateSearch = e => {
      setSearch(e);
+     console.log("Estou no Search", search)
   }
   
   const getSearch = e => {
@@ -42,8 +43,6 @@ function All () {
     }
     setSearch('')
   }
-
-  console.log(recipes)
 
   return (
     <div>    
@@ -58,4 +57,4 @@ function All () {
   );
 }
 
-export default All;
+export default Usa;

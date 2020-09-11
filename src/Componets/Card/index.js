@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../Button';
 
 const variable = {
     primary: '#2B303A',
     secundary: '#58A4B0',
     colorbutton: '#D64933',
+    colorhover: '#c96657',
 
     background: '#FFFFFF',
     text: '#212121',
@@ -34,24 +36,43 @@ const StyleCard = styled.div `
         margin: 20px 0;
     }
 
-    .modal__notice {
+    .card__notice {
         color: #c5c5c5;
         text-align: left;        
+    }
+
+    .card__button {
+        background: ${variable.colorbutton};
+        color: #ffff;
+    
+        font-size: 1em;
+        margin: 1em;
+        padding: 0.25em 1em;
+        border: 2px solid ${variable.colorbutton};
+        border-radius: 5px;
+
+        &:hover {
+            background-color: ${variable.colorhover};
+            border: 2px solid ${variable.colorhover};
+        }
     }
 `;
 
 const Card = ({ queryApi }) => {
 
     return(
-        queryApi.map((notice, indice) => (
+        <div>
+        {queryApi.map((notice, indice) => (
         <StyleCard key={indice}>
             <h3>{notice.title}</h3>
             <img className="card__image" src={notice.urlToImage} alt=""/>
             <p className="card__description">{notice.description}</p>
-            <p className="modal__notice">{notice.content}</p>
-            <a href={notice.url}>Ver notícia</a>
+            <p className="card__notice">{notice.content}</p>
+            <a className="card__button" target="_blank" href={notice.url}>Ver notícia</a>
         </StyleCard>
-        ))
+        ))}
+        <Button color='black' value={"Ver mais"} />
+        </div>
     )
 };
 

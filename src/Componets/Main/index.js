@@ -6,54 +6,14 @@ import { Header } from "./style";
 import Button from "../Button";
 import Card from "../Card";
 
-function Main() {
+function Main (props) {
 
-  const APP_KEY = "d501b11233134baaab897ec69639ddd8";
-  const BASE_API = "https://newsapi.org/v2/";
 
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('');
-  const [country, setCountry] = useState('pt');
+  const handleSearch = (e) => {
+      props.onChange(e.target.value);
+      console.log("Main ",e)
+ }
 
-  useEffect( () => {
-    getRecipes();
-  }, [query, country])
-
-  const getRecipes = async () => {
-
-    const response = await fetch( `${BASE_API}top-headlines?${query}country=${country}&from=2020-09-09&to=2020-09-09&sortBy=popularity&apiKey=${APP_KEY}`
-    );
-    const data = await response.json();
-    setRecipes(data.articles);
-  }
-
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  }
-  
-  const getSearch = e => {
-    e.preventDefault();
-    if(search == ''){
-      setQuery('');
-    } else {
-      setQuery(`q=${search}&`);
-    }
-    setSearch('')
-  }
-
-  const get = e => {
-  }
-  const getTop = e => {
-    setCountry('pt')
-  }
-  const getBrasil = e => {
-    // setUrl(`${BASE_API}top-headlines?${query}country=pt&apiKey=${APP_KEY}`)
-    setCountry('pt')
-  }
-  const getUsa = e => {
-    setCountry('us')
-  }
 
   return (
     <div className="Header">
@@ -63,24 +23,27 @@ function Main() {
                 <Link to="/">
                     <li>Todas</li>
                 </Link>
-                <Link onClick={getTop} to="/top">
+                <Link to="/top">
                     <li>Em Alta</li>
                 </Link>
-                <Link onClick={getBrasil} to="/brasil">
+                <Link to="/brasil">
                     <li>Brasil</li>
                 </Link>
-                <Link onClick={getUsa} to="/usa">
+                <Link to="/franca">
+                    <li>Franca</li>
+                </Link>
+                <Link to="/usa">
                     <li>USA</li>
                 </Link>
             </ul>
         </nav>
-        {/* <span>{recipes.length} Nóticia(s)</span> */}
-        <form onSubmit={getSearch}>
-            <input type="text" value={search} onChange={updateSearch}/>
-            <Button>Enviar</Button>
+        <span>{props.queryApi.length > 10 ? `50...` : props.queryApi.length } Notícia(s)</span>
+        <form onSubmit={props.onSubmit}>
+            <input type="text" value={props.valueSearch} onChange={handleSearch}/>
+            <Button value={"Pesquisar"}/>
         </form>  
       </Header> 
-      <Card queryApi={recipes} />
+      { props.queryApi.length > 0 ? <Card queryApi={props.queryApi} />: ""} 
     </div>
   );
 }

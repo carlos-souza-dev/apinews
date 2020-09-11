@@ -5,6 +5,7 @@ const variable = {
     primary: '#2B303A',
     secundary: '#58A4B0',
     colorbutton: '#D64933',
+    colorhover: '#c96657',
   
     background: '#FFFFFF',
     text: '#212121',
@@ -21,12 +22,17 @@ const variable = {
     padding: 0.25em 1em;
     border: 2px solid ${variable.colorbutton};
     border-radius: 5px;
+
+    &:hover {
+      background-color: ${variable.colorhover};
+      border: 2px solid ${variable.colorhover};
+    }
   `;
 
-const Button = () => {
+const Button = (props) => {
     return(
             <StyleButton>
-                Pesquisar
+              {props.value}
             </StyleButton>
     )
 };
