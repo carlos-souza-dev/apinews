@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { Header } from "./style";
+import { variable } from "./style";
 
 // Componentes
 import Button from "../Button";
@@ -16,7 +17,7 @@ function Main (props) {
 
 
   return (
-    <div className="Header">
+    <div>
       <Header>
         <nav>
             <ul>
@@ -37,13 +38,19 @@ function Main (props) {
                 </Link>
             </ul>
         </nav>
-        <span>{props.queryApi.length > 10 ? `50...` : props.queryApi.length } Notícia(s)</span>
+        <span >{props.queryApi.length >= 5 ? `50...` : props.queryApi.length } Notícia(s)</span>
         <form onSubmit={props.onSubmit}>
-            <input type="text" value={props.valueSearch} onChange={handleSearch}/>
-            <Button value={"Pesquisar"}/>
+            <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
+            <Button
+                background={variable.colorbutton} 
+                color={variable.background} 
+                colorHover={variable.colorHover}  
+                value={"Pesquisar"}/>
         </form>  
       </Header> 
-      { props.queryApi.length > 0 ? <Card queryApi={props.queryApi} />: ""} 
+      { props.queryApi.length > 0 ? 
+        <Card funcMore={props.funcMore}  queryApi={props.queryApi} /> :
+         "" } 
     </div>
   );
 }

@@ -14,24 +14,30 @@ const variable = {
   
  const StyleButton = styled.button`
     /* Adapt the colors based on primary prop */
-    background: ${variable.colorbutton};
-    color: #ffff;
-  
+    background: ${props => `${props.background}`};
+    color: ${props => `${props.color}`};
+    line-height: 0;
     font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
+    margin: 0 1em;
+    padding: 14px 16px;
     border: 2px solid ${variable.colorbutton};
     border-radius: 5px;
 
     &:hover {
-      background-color: ${variable.colorhover};
+      background-color: ${props => `${props.colorHover}`};
       border: 2px solid ${variable.colorhover};
+      color: ${variable.background};
     }
   `;
 
 const Button = (props) => {
     return(
-            <StyleButton>
+            <StyleButton
+              onClick={props.funcMore}
+              background={props.background}
+              color={props.color}
+              colorHover={props.colorHover}
+            >
               {props.value}
             </StyleButton>
     )

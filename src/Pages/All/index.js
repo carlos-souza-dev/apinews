@@ -9,21 +9,21 @@ function All () {
   const BASE_API = "https://newsapi.org/v2/";
 
   const date = new Date();
-  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}pageSize=50`;
+  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('q=*&');
-  const [limit, setLimit] = useState('10');
+  const [ recipes, setRecipes ] = useState([]);
+  const [ search, setSearch ] = useState('');
+  const [ query, setQuery ] = useState('q=*&');
+  const [ more, setMore ] = useState(5);
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, limit])
+  }, [query, more])
 
   const getRecipes = async () => {
 
-    const response = await fetch( `${BASE_API}everything?${query}apiKey=${APP_KEY}&pageSize=50`
+    const response = await fetch( `${BASE_API}everything?${query}apiKey=${APP_KEY}&pageSize=${more}`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -43,11 +43,20 @@ function All () {
     setSearch('')
   }
 
-  console.log(recipes)
+
+  const limitNews = [];
+
+  function getMore () {
+    setMore(more + 10)
+    for(var i = 0; i <= more; i++) {
+        limitNews.push(recipes[i]);
+    }
+  }
 
   return (
     <div>    
       <Main
+        funcMore={getMore}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const variable = {
+export const variable = {
     primary: '#2B303A',
     secundary: '#58A4B0',
     colorbutton: '#D64933',
@@ -13,8 +13,8 @@ export const Header = styled.header `
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 32px;
     background-color: ${variable.primary};
+
 
     nav {
         width: 50%;
@@ -47,7 +47,7 @@ export const Header = styled.header `
 
         input {
             width: 30%;
-            padding: 5px;
+            padding: 8px 8px;
             margin: 0;
             border: 0;
             border-radius: 5px;
