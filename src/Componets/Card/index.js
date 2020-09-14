@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
@@ -16,6 +16,36 @@ const variable = {
 const Container = styled.div `
     margin: 0 auto;
     padding: 52px 0;
+
+    .container__news {
+        color: ${variable.secundary};
+        position: fixed;
+        top: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    &.card--block{
+        display: flex;
+        flex-wrap: wrap;
+
+        .card {
+            width: 30%;
+            min-width: 250px;
+            padding: 8px;
+            margin: 15px auto;
+            
+            .card__notice, .card__description {
+                display: none;
+            }
+
+            .card__like i {
+                font-size: 24px;
+                bottom: 10px;
+            }
+        }
+    }
 `;
 
 const StyleCard = styled.div `
@@ -75,12 +105,47 @@ const StyleCard = styled.div `
     }
 `;
 
-const Card = ({ queryApi, funcMore }) => {
+const Card = ({ queryApi }) => {
+
+    const [ news, setNews ] = useState(5);
+    const [ style, setStyle ] = useState(false);
+    
+    useEffect( () => {
+    }, [news])
+
+    const position = (e) => {
+        const windowTop = window.pageYOffset;
+        return windowTop;
+    }
+    
+    window.addEventListener('scroll', function() {
+        position();
+    })
+    
+    const to = () => {
+        const value = position()
+        setTimeout(() => {
+                window.scrollTo(0, value)
+        }, 1);
+    }
+    
+    const funcMore = () => {
+        setNews(news + 5);
+        to();        
+    };
+
+    const getStyle = () => {
+       setStyle(!style)
+    }
+    
+    const qtdeNews = Array.from({length:news}, (v, i) => queryApi[i]);
 
     return(
-        <Container>
-            {queryApi.map((notice, indice) => (
-            <StyleCard id={notice.publishedAt} key={indice}>
+        <div className="main">
+        <Container className="card--block">
+        <span className="container__news">{queryApi.length >= 5 ? `+${queryApi.length - news}` : queryApi.length } Notícia(s)</span>
+            {qtdeNews.map((notice, indice) => (
+            <StyleCard className="card" id={notice.publishedAt} key={indice}>
                 <h3 >{notice.title}</h3>
                 <img className="card__image" src={notice.urlToImage} alt=""/>
                 <p className="card__description">{notice.description}</p>
@@ -89,14 +154,15 @@ const Card = ({ queryApi, funcMore }) => {
                 <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
             </StyleCard>
             ))}
-            <Button 
-                funcMore={funcMore}              
-                background={variable.background} 
-                color={variable.colorbutton} 
-                colorHover={variable.colorhover} 
-                value={"Ver mais"} 
-            />
         </Container>
+        <Button     
+            funcMore={funcMore}
+            background={variable.background} 
+            color={variable.colorbutton} 
+            colorHover={variable.colorhover} 
+            value={"Ver mais"} 
+        />
+        </div>
         )
 };
 

@@ -14,16 +14,15 @@ function Usa () {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
-  const [ more, setMore ] = useState(5);
   const [country, setCountry] = useState('country=fr');
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, country, more])
+  }, [query, country])
 
   const getRecipes = async () => {
-    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=${more}`
+    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -43,14 +42,9 @@ function Usa () {
     setSearch('')
   }
 
-  function getMore () {
-    setMore(more + 5)
-  }
-
   return (
     <div>    
       <Main
-        funcMore={getMore}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

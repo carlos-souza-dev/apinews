@@ -6,15 +6,18 @@ import { variable } from "./style";
 // Componentes
 import Button from "../Button";
 import Card from "../Card";
+import Footer from "../Footer";
+import Filter from "../Filter";
 
 function Main (props) {
 
 
-  const handleSearch = (e) => {
+    const handleSearch = (e) => {
       props.onChange(e.target.value);
       console.log("Main ",e)
- }
+    }
 
+    console.log(props.queryApi.length)
 
   return (
     <div>
@@ -38,7 +41,6 @@ function Main (props) {
                 </Link>
             </ul>
         </nav>
-        <span >{props.queryApi.length >= 5 ? `5...` : props.queryApi.length } Notícia(s)</span>
         <form onSubmit={props.onSubmit}>
             <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
             <Button
@@ -47,10 +49,12 @@ function Main (props) {
                 colorHover={variable.colorHover}  
                 value={"Pesquisar"}/>
         </form>  
-      </Header> 
+      </Header>
+      <Filter/>
       { props.queryApi.length > 0 ? 
         <Card funcMore={props.funcMore}  queryApi={props.queryApi} /> :
          "" } 
+        <Footer></Footer>
     </div>
   );
 }

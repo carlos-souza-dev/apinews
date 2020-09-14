@@ -1,8 +1,12 @@
 .App {
   margin: 0 auto;
   text-align: center;
+  margin-top: 65px;
 }
 
+.main {
+  margin-bottom: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -11,16 +11,15 @@ function All () {
   const [ recipes, setRecipes ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('q=*&');
-  const [ more, setMore ] = useState(5);
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, more])
+  }, [query])
 
   const getRecipes = async () => {
 
-    const response = await fetch( `${BASE_API}everything?${query}apiKey=${APP_KEY}&pageSize=${more}`
+    const response = await fetch( `${BASE_API}everything?${query}apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -40,14 +39,9 @@ function All () {
     setSearch('')
   }
 
-  function getMore () {
-      setMore(more + 5)
-  }
-
   return (
     <div>    
       <Main
-        funcMore={getMore}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

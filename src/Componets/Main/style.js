@@ -10,11 +10,13 @@ export const variable = {
 }
 
 export const Header = styled.header `
+    position: fixed;
+    top: 0;
+    z-index: 2;
     width: 100%;
     display: flex;
     align-items: center;
     background-color: ${variable.primary};
-
 
     nav {
         width: 50%;
@@ -35,10 +37,6 @@ export const Header = styled.header `
                 }
             }
         }
-    }
-
-    span {
-        color: ${variable.secundary};
     }
 
     form {
