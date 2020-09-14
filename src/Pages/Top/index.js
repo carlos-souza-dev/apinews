@@ -13,16 +13,16 @@ function Top () {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
+  const [ more, setMore ] = useState(5);
   const [country, setCountry] = useState('country=pt');
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, country])
+  }, [query, country, more])
 
   const getRecipes = async () => {
-
-    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}`
+    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=${more}`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -30,7 +30,6 @@ function Top () {
 
   const updateSearch = e => {
      setSearch(e);
-     console.log("Estou no Search", search)
   }
   
   const getSearch = e => {
@@ -43,9 +42,14 @@ function Top () {
     setSearch('')
   }
 
+  function getMore () {
+    setMore(more + 5)
+  }
+
   return (
     <div>    
       <Main
+        funcMore={getMore}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

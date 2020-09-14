@@ -77,12 +77,6 @@ const StyleCard = styled.div `
 
 const Card = ({ queryApi, funcMore }) => {
 
-    // const [ id, setId ] = useState(`${queryApi[queryApi.length-1].publishedAt}`);
-
-    // const getId = () => {
-    //     setId(queryApi[queryApi.length-1])
-    // }
-
     return(
         <Container>
             {queryApi.map((notice, indice) => (
@@ -103,7 +97,7 @@ const Card = ({ queryApi, funcMore }) => {
                 value={"Ver mais"} 
             />
         </Container>
-    )
+        )
 };
 
 export default Card;

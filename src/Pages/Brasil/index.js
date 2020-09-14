@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import Main from "../../Componets/Main";
 
 function Brasil() {
+
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
 
@@ -12,16 +13,16 @@ function Brasil() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
+  const [ more, setMore ] = useState(5);
   const [country, setCountry] = useState('country=pt');
   
 
   useEffect( () => {
     getRecipes();
-  }, [query, country])
+  }, [query, country, more])
 
   const getRecipes = async () => {
-
-    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}`
+    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=${more}`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -29,7 +30,6 @@ function Brasil() {
 
   const updateSearch = e => {
      setSearch(e);
-     console.log("Estou no Search", search)
   }
   
   const getSearch = e => {
@@ -42,9 +42,14 @@ function Brasil() {
     setSearch('')
   }
 
+  function getMore () {
+    setMore(more + 5)
+  }
+
   return (
     <div>    
       <Main
+        funcMore={getMore}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

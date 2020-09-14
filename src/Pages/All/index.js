@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import Modal from "../../Componets/Modal";
+// import Modal from "../../Componets/Modal";
 import Main from "../../Componets/Main"
 
 function All () {
@@ -8,9 +8,6 @@ function All () {
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
   const BASE_API = "https://newsapi.org/v2/";
 
-  const date = new Date();
-  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-  
   const [ recipes, setRecipes ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('q=*&');
@@ -43,14 +40,8 @@ function All () {
     setSearch('')
   }
 
-
-  const limitNews = [];
-
   function getMore () {
-    setMore(more + 10)
-    for(var i = 0; i <= more; i++) {
-        limitNews.push(recipes[i]);
-    }
+      setMore(more + 5)
   }
 
   return (

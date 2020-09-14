@@ -38,7 +38,7 @@ function Main (props) {
                 </Link>
             </ul>
         </nav>
-        <span >{props.queryApi.length >= 5 ? `50...` : props.queryApi.length } Notícia(s)</span>
+        <span >{props.queryApi.length >= 5 ? `5...` : props.queryApi.length } Notícia(s)</span>
         <form onSubmit={props.onSubmit}>
             <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
             <Button
