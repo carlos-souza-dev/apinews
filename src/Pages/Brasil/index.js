@@ -10,18 +10,18 @@ function Brasil() {
   const date = new Date();
   const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('');
-  const [country, setCountry] = useState('country=pt');
-  
+  const [ recipes, setRecipes ] = useState([]);
+  const [ search, setSearch ] = useState('');
+  const [ query, setQuery ] = useState('');
+  const [ country, setCountry ] = useState('country=pt');
+  const [ category, setCategory ] = useState('');
 
   useEffect( () => {
     getRecipes();
-  }, [query, country])
+  }, [ query, country, category ])
 
   const getRecipes = async () => {
-    const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
+    const response = await fetch( `${BASE_API}top-headlines?${query}${country}${category}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
     setRecipes(data.articles);
@@ -41,9 +41,14 @@ function Brasil() {
     setSearch('')
   }
 
+  const getCategory = (e) => {
+    e === "Categoria" ? setCategory('') : setCategory(`&category=${e}`)
+  }
+
   return (
     <div>    
       <Main
+        getCategory={getCategory}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

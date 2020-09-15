@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Header } from "./style";
 import { variable } from "./style";
@@ -11,13 +11,15 @@ import Filter from "../Filter";
 
 function Main (props) {
 
+  const [ style, setStyle ] = useState(true);
 
     const handleSearch = (e) => {
       props.onChange(e.target.value);
-      console.log("Main ",e)
     }
 
-    console.log(props.queryApi.length)
+    const getStyle = () => {
+      setStyle(!style)
+   }
 
   return (
     <div>
@@ -50,10 +52,19 @@ function Main (props) {
                 value={"Pesquisar"}/>
         </form>  
       </Header>
-      <Filter/>
+      <Filter 
+        getCategory={props.getCategory}
+        getStyle={getStyle} 
+        valueCategory={props.valueCategory} 
+        setCaegory={props.setCaegory}
+      />
       { props.queryApi.length > 0 ? 
-        <Card funcMore={props.funcMore}  queryApi={props.queryApi} /> :
-         "" } 
+        <Card 
+          btnFunc={props.funcMore} 
+          styleContainer={style} 
+          queryApi={props.queryApi} /> :
+         ""
+       } 
         <Footer></Footer>
     </div>
   );
