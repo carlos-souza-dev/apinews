@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
+import ImageDefault from '../../assets/image-default.jpeg'
 
 const variable = {
     primary: '#2B303A',
@@ -161,10 +162,10 @@ const Card = ({ queryApi, styleContainer }) => {
         <span className="container__news">{queryApi.length >= 5 ? `+${queryApi.length - news}` : queryApi.length } Notícia(s)</span>
             {qtdeNews.map((notice, indice) => (
             <StyleCard className="card" id={notice.publishedAt} key={indice}>
-                <h3 className="card__title" >{notice.title}</h3>
-                <img className="card__image" src={notice.urlToImage} alt=""/>
-                <p className="card__description">{notice.description}</p>
-                <p className="card__notice">{notice.content}</p>
+                <h3 className="card__title" >{notice.title ? notice.title : "Sem Título"}</h3>
+                <img className="card__image" src={notice.urlToImage ? notice.urlToImage : ImageDefault} alt=""/>
+                <p className="card__description">{notice.description ? notice.description : "Sem Descrição"}</p>
+                <p className="card__notice">{notice.content ? notice.content : "Sem notícia"}</p>
                 <span className="card__like"><i className="fa fa-heart"></i></span>
                 <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
             </StyleCard>

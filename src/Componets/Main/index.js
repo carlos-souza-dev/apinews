@@ -14,15 +14,18 @@ function Main (props) {
   const [ style, setStyle ] = useState(true);
 
     const handleSearch = (e) => {
-      props.onChange(e.target.value);
+      props.onChange(e.target.value); 
     }
 
     const getStyle = () => {
       setStyle(!style)
    }
 
+
+   console.log(props.filter)
+
   return (
-    <div>
+    <>
       <Header>
         <nav>
             <ul>
@@ -53,9 +56,10 @@ function Main (props) {
         </form>  
       </Header>
       <Filter 
-        getCategory={props.getCategory}
-        getStyle={getStyle} 
-        valueCategory={props.valueCategory} 
+        filterTitle={props.filterTitle}
+        filter={props.filter}
+        getFilter={props.getFilter}
+        getStyle={getStyle}  
         setCaegory={props.setCaegory}
       />
       { props.queryApi.length > 0 ? 
@@ -66,7 +70,7 @@ function Main (props) {
          ""
        } 
         <Footer></Footer>
-    </div>
+    </>
   );
 }
 

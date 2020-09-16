@@ -10,21 +10,21 @@ function Top () {
   const date = new Date();
   const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
-  const [recipes, setRecipes] = useState([]);
+  const [newsapi, setNewsapi] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
   const [country, setCountry] = useState('country=pt');
   
 
   useEffect( () => {
-    getRecipes();
+    getNewsapi();
   }, [query, country])
 
-  const getRecipes = async () => {
+  const getNewsapi = async () => {
     const response = await fetch( `${BASE_API}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
-    setRecipes(data.articles);
+    setNewsapi(data.articles);
   }
 
   const updateSearch = e => {
@@ -42,15 +42,15 @@ function Top () {
   }
 
   return (
-    <div>    
+    <>    
       <Main
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}
-        queryApi={recipes}
+        queryApi={newsapi}
         setSearch={setSearch}
         />
-    </div>
+    </>
   );
 }
 export default Top;

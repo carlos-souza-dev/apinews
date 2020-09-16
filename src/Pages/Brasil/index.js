@@ -2,6 +2,33 @@ import React, {useEffect, useState} from "react";
 
 import Main from "../../Componets/Main";
 
+const categorys = [ 
+  {
+    value: "business",
+    option: "Negócios"
+  },   
+  {
+    value: "entertainment",
+    option: "Entretenimento",
+  },
+  {
+    value: "health",
+    option: "Saúde",
+  },
+  {
+    value: "science",
+    option: "Ciência",
+  },
+  {
+    value: "sports",
+    option: "Esporte",
+  },
+  {
+    value: "technology",
+    option: "Tecnologia"
+  },
+]
+
 function Brasil() {
 
   const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
@@ -10,21 +37,21 @@ function Brasil() {
   const date = new Date();
   const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
-  const [ recipes, setRecipes ] = useState([]);
+  const [ newsapi, setNewsapi ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('');
   const [ country, setCountry ] = useState('country=pt');
   const [ category, setCategory ] = useState('');
 
   useEffect( () => {
-    getRecipes();
+    getNewsapi();
   }, [ query, country, category ])
 
-  const getRecipes = async () => {
+  const getNewsapi = async () => {
     const response = await fetch( `${BASE_API}top-headlines?${query}${country}${category}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
-    setRecipes(data.articles);
+    setNewsapi(data.articles);
   }
 
   const updateSearch = e => {
@@ -46,16 +73,18 @@ function Brasil() {
   }
 
   return (
-    <div>    
+    <>    
       <Main
-        getCategory={getCategory}
+        filterTitle={["Filtrar por categoria","Geral"]}
+        filter={categorys}
+        getFilter={getCategory}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}
-        queryApi={recipes}
+        queryApi={newsapi}
         setSearch={setSearch}
         />
-    </div>
+    </>
   );
 }
 

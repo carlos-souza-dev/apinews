@@ -22,6 +22,10 @@ const FilterStyle = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+
+    label {
+        color: ${variable.colorbutton}
+    }
     
     #select {
         width: 30%;
@@ -44,33 +48,6 @@ const FilterStyle = styled.div `
     }
 `;
 
-const categorys = [ 
-        {
-            en: "business",
-            pt: "Negócios"
-        },   
-        {
-            en: "entertainment",
-            pt: "Entretenimento",
-        },
-        {
-            en: "health",
-            pt: "Saúde",
-        },
-        {
-            en: "science",
-            pt: "Ciência",
-        },
-        {
-            en: "sports",
-            pt: "Esporte",
-        },
-        {
-            en: "technology",
-            pt: "Tecnologia"
-        },
-]
-
 const Filter = (props) => {
 
     const [ icon, setIcon ] = useState("fa fa-bars");
@@ -78,21 +55,20 @@ const Filter = (props) => {
     const alterIcon = () => {
         setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
     }
-
     // pegando o valor do select
     const handleCategory = (e) => {
         const select = document.getElementById("select")
         var value = select.options[select.selectedIndex].value;
-        props.getCategory(value)
-        console.log(value)
+        props.getFilter(value)
     }
 
     return(
         <FilterStyle> 
+            <label>{props.filterTitle[0]}</label>
             <select   id="select">
-                <option value="general" selected>Geral</option>
-                {categorys.map((category, indice) => (
-                    <option  className="value" value={`${category.en}`}>{category.pt}</option> 
+                <option value="general" selected>{props.filterTitle[1]}</option>
+                {props.filter.map((res, indice) => (
+                    <option  className="value" value={`${res.value}`}>{res.option}</option> 
                 ))}
             </select>
             <Button 
