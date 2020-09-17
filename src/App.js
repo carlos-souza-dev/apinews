@@ -5,8 +5,8 @@ import "./App.css";
 /* Componentes */
 import All from "./Pages/All"
 import Top from "./Pages/Top"
-import Brasil from "./Pages/Brasil"
-import Franca from "./Pages/Franca"
+import Brazil from "./Pages/Brazil"
+import France from "./Pages/France"
 import Usa from "./Pages/Usa"
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={All}/>
           <Route path="/top" exact component={Top}/>
-          <Route path="/brasil" exact component={Brasil}/>
-          <Route path="/franca" exact component={Franca}/>
+          <Route path="/brasil" exact component={Brazil}/>
+          <Route path="/franca" exact component={France}/>
           <Route path="/usa" exact component={Usa}/>
         </Switch>
       </div>
