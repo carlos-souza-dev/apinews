@@ -7,11 +7,12 @@ import { variable } from "./style";
 import Button from "../Button";
 import Card from "../Card";
 import Footer from "../Footer";
-import Filter from "../Filter";
 
 function Main (props) {
 
   const [ style, setStyle ] = useState(true);
+  const [ icon, setIcon ] = useState("fa fa-bars");
+  const [ disabled, setDisabled] = useState(true);
 
     const handleSearch = (e) => {
       props.onChange(e.target.value); 
@@ -21,8 +22,9 @@ function Main (props) {
       setStyle(!style)
    }
 
-
-   console.log(props.filter)
+   const alterIcon = () => {
+    setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
+  }
 
   return (
     <>
@@ -53,15 +55,9 @@ function Main (props) {
                 color={variable.background} 
                 colorHover={variable.colorHover}  
                 value={"Pesquisar"}/>
-        </form>  
+        </form> 
+        <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
       </Header>
-      <Filter 
-        filterTitle={props.filterTitle}
-        filter={props.filter}
-        getFilter={props.getFilter}
-        getStyle={getStyle}  
-        setCaegory={props.setCaegory}
-      />
       { props.queryApi.length > 0 ? 
         <Card 
           btnFunc={props.funcMore} 

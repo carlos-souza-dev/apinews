@@ -28,6 +28,17 @@ const variable = {
       border: 2px solid ${variable.colorhover};
       color: ${variable.background};
     }
+
+    &:disabled {
+      background-color: ${props => `${props.colorHover}`};
+      border: 2px solid ${variable.colorhover};
+      color: ${variable.background};
+    }
+
+    &:enabled {
+      background: ${props => `${props.background}`};
+      color: ${props => `${props.color}`};
+    }
   `;
 
 const Button = (props) => {

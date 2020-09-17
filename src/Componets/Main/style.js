@@ -18,8 +18,19 @@ export const Header = styled.header `
     align-items: center;
     background-color: ${variable.primary};
 
+    .filter__display {
+        width: 4%;
+    
+        i {
+            display: block;
+            font-size: 28px;
+            margin: 10px;
+            color: ${variable.background}
+        }
+    }
+
     nav {
-        width: 50%;
+        width: 48%;
 
         ul {
             text-align: left;
@@ -40,7 +51,7 @@ export const Header = styled.header `
     }
 
     form {
-        width: 50%;
+        width: 48%;
         text-align: right;
 
         input {

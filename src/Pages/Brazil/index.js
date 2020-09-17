@@ -40,15 +40,13 @@ function Brasil() {
   const [ newsapi, setNewsapi ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('');
-  const [ country, setCountry ] = useState('country=pt');
-  const [ category, setCategory ] = useState('');
 
   useEffect( () => {
     getNewsapi();
-  }, [ query, country, category ])
+  }, [ query ])
 
   const getNewsapi = async () => {
-    const response = await fetch( `${BASE_API}top-headlines?${query}${country}${category}&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
+    const response = await fetch( `${BASE_API}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
     );
     const data = await response.json();
     setNewsapi(data.articles);
@@ -68,16 +66,9 @@ function Brasil() {
     setSearch('')
   }
 
-  const getCategory = (e) => {
-    e === "Categoria" ? setCategory('') : setCategory(`&category=${e}`)
-  }
-
   return (
     <>    
       <Main
-        filterTitle={["Filtrar por categoria","Geral"]}
-        filter={categorys}
-        getFilter={getCategory}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}
