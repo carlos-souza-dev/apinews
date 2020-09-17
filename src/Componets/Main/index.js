@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Header } from "./style";
 import { variable } from "./style";
 
 // Componentes
-import Button from "../Button";
+import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
 
@@ -22,42 +21,14 @@ function Main (props) {
       setStyle(!style)
    }
 
-   const alterIcon = () => {
-    setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
-  }
-
   return (
     <>
-      <Header>
-        <nav>
-            <ul>
-                <Link to="/">
-                    <li>Todas</li>
-                </Link>
-                <Link to="/top">
-                    <li>Em Alta</li>
-                </Link>
-                <Link to="/brasil">
-                    <li>Brasil</li>
-                </Link>
-                <Link to="/franca">
-                    <li>Franca</li>
-                </Link>
-                <Link to="/usa">
-                    <li>USA</li>
-                </Link>
-            </ul>
-        </nav>
-        <form onSubmit={props.onSubmit}>
-            <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
-            <Button
-                background={variable.colorbutton} 
-                color={variable.background} 
-                colorHover={variable.colorHover}  
-                value={"Pesquisar"}/>
-        </form> 
-        <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
-      </Header>
+      <Header
+        onSubmit={props.onSubmit}
+        valueSearch={props.valueSearch}
+        handleSearch={handleSearch}
+        getStyle={getStyle}
+      /> 
       { props.queryApi.length > 0 ? 
         <Card 
           btnFunc={props.funcMore} 
@@ -65,7 +36,7 @@ function Main (props) {
           queryApi={props.queryApi} /> :
          ""
        } 
-        <Footer></Footer>
+        <Footer className={props.queryApi.length > 0 ? "" : "lot-text"} ></Footer>
     </>
   );
 }
