@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-// import Modal from "../../Componets/Modal";
+import Themes from '../../Styles/Themes'
 import Main from "../../Componets/Main"
 
 function All () {
@@ -42,6 +42,7 @@ function All () {
   return (
     <>    
       <Main
+        themes={Themes}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}
