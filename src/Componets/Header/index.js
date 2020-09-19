@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { HeaderS, variable } from "./style";
+import { HeaderS } from "./style";
 
 // Componentes
 import Button from "../Button";
@@ -24,14 +24,14 @@ function Header (props) {
    const alterIcon = () => {
     setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
   }
-
+  
   return (
     <>
-      <HeaderS>
+      <HeaderS themes={props.themes}>
         <nav>
             <ul>
                 {urls.map((url) => (
-                    <Link to={`${url.to}`}>
+                  <Link to={`${url.to}`}>
                         <li>{url.name}</li>
                     </Link>
                 ))}
@@ -40,11 +40,11 @@ function Header (props) {
         <form onSubmit={props.onSubmit}>
             <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={props.handleSearch}/>
             <Button
-                background={variable.colorbutton} 
-                color={variable.background} 
-                colorHover={variable.colorHover}  
-                value={"Pesquisar"}/>
+                themes={props.themes}  
+                value={"Pesquisar"}
+            />
         </form> 
+        <div className="theme"><i class="fas fa-moon"></i></div> 
         <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
       </HeaderS>
     </>

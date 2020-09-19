@@ -194,9 +194,9 @@ $gradient-radial: radial-gradient(#ff6633ff, #d5d7d8ff, #333333ff, #121212ff, #0
 
 
 :root{
-    primary: #F8F8F8;
+    primary: #3A4147;
     secundary: #607182;
-    tertiary: #6FCF97;
+    tertiary: #44a36b;
     colorbuttonHover: #E3362A;
     colorbutton: #FC5736;
     colorbutton0: #FF745B;
@@ -219,8 +219,8 @@ $gradient-radial: radial-gradient(#ff6633ff, #d5d7d8ff, #333333ff, #121212ff, #0
     backgroundCard: #383838;
     background: #333333;
     shadow: rgba(0, 0, 0, 0.24);
-    title: #62D5CE;
-    description:  #D5D7D8;
+    title: #2bb8ae;
+    description:  #b5b7b8;
     content: #607182;
     label: #EEEFF0;
     alert: #62D5CE;

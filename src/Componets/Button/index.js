@@ -1,16 +1,14 @@
 import React from 'react';
-import styled from "styled-components"
 
 import { ButtonS } from './style'
 
 
 const Button = (props) => {
+
     return(
             <ButtonS
+              themes={props.themes}
               onClick={props.btnFunc}
-              background={props.background}
-              color={props.color}
-              colorHover={props.colorHover}
             >
               {props.value}
             </ButtonS>

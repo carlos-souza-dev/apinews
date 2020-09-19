@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { WrapperS, CardS, ContainerS, variable } from './style';
+import { WrapperS, CardS, ContainerS } from './style';
 import Button from '../Button';
 import ImageDefault from '../../assets/image-default.jpeg'
 
-const Card = ({ queryApi, styleContainer }) => {
+const Card = (props) => {
 
     const [ news, setNews ] = useState(5);
     
@@ -27,32 +27,34 @@ const Card = ({ queryApi, styleContainer }) => {
     }
     
     const funcMore = () => {
+        console.log("Mais")
         setNews(news + 5);
         to();        
     };
 
-    const qtdeNews = Array.from({length:5}, (v, i) => queryApi[i]);
+    const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
 
     return(
-        <WrapperS>
-        <ContainerS className={styleContainer ? `${styleContainer}` : "card--block"}>
-            <span className="container__news">{queryApi.length >= 5 ? `+${queryApi.length - news}` : queryApi.length } Notícia(s)</span>
-            {qtdeNews.map((notice, indice) => (
-            <CardS className="card" id={notice.publishedAt} key={indice}>
-                <h3 className="card__title" >{notice.title ? notice.title : "Sem Título"}</h3>
-                <img className="card__image" src={notice.urlToImage ? notice.urlToImage : ImageDefault} alt=""/>
-                <p className="card__description">{notice.description ? notice.description : "Sem Descrição"}</p>
-                <p className="card__notice">{notice.content ? notice.content : "Sem notícia"}</p>
-                <span className="card__like"><i className="fa fa-heart"></i></span>
-                <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
-            </CardS>
-            ))}
-        </ContainerS>
-        <Button    
+        <WrapperS themes={props.themes}>
+            <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"}>
+                <span className="container__news">{props.queryApi.length >= 5 ? `+${props.queryApi.length - news}` : props.queryApi.length } Notícia(s)</span>
+                {qtdeNews.map((notice, indice) => (
+                <CardS themes={props.themes} 
+                    className="card" 
+                    id={notice.publishedAt} 
+                    key={indice}>
+                    <h3 className="card__title" >{notice.title ? notice.title : "Sem Título"}</h3>
+                    <div className="card__image"><img src={notice.urlToImage ? notice.urlToImage : ImageDefault} alt=""/></div>
+                    <h6 className="card__description">{notice.description ? notice.description : "Sem Descrição"}</h6>
+                    <p className="card__notice">{notice.content ? notice.content : "Sem notícia"}</p>
+                    <span className="card__like"><i className="fa fa-heart"></i></span>
+                    <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
+                </CardS>
+                ))}
+            </ContainerS>
+        <Button
+            themes={props.themes}    
             btnFunc={funcMore}
-            background={variable.background} 
-            color={variable.colorbutton} 
-            colorHover={variable.colorhover} 
             value={"Ver mais"} 
         />
         </WrapperS>

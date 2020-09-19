@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const variable = {
-    primary: '#2B303A',
-    secundary: '#58A4B0',
-    colorbutton: '#D64933',
-
-    background: '#FFFFFF',
-    text: '#212121',
-}
-
 export const HeaderS = styled.header `
     position: fixed;
     top: 0;
@@ -16,7 +7,18 @@ export const HeaderS = styled.header `
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: ${variable.primary};
+    background-color: ${({themes}) => `${themes.primary}`};
+
+    .theme {
+        width: 4%;
+    
+        i {
+            display: block;
+            font-size: 28px;
+            margin: 10px;
+            color: ${({themes}) => `${themes.label}`};
+        }
+    }
 
     .filter__display {
         width: 4%;
@@ -25,7 +27,7 @@ export const HeaderS = styled.header `
             display: block;
             font-size: 28px;
             margin: 10px;
-            color: ${variable.background}
+            color: ${({themes}) => `${themes.label}`};
         }
     }
 
@@ -34,6 +36,7 @@ export const HeaderS = styled.header `
 
         ul {
             text-align: left;
+            font-family: 'Montserrat', sans-serif;
             
             li {
                 display: inline-block;
@@ -44,7 +47,7 @@ export const HeaderS = styled.header `
                 
                 &:hover {
                     transition: all .5s;
-                    color: ${variable.colorbutton};
+                    color: ${({themes}) => `${themes.hover}`};
                 }
             }
         }
