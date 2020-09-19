@@ -9,30 +9,8 @@ export const HeaderS = styled.header `
     align-items: center;
     background-color: ${({themes}) => `${themes.primary}`};
 
-    .theme {
-        width: 4%;
-    
-        i {
-            display: block;
-            font-size: 28px;
-            margin: 10px;
-            color: ${({themes}) => `${themes.label}`};
-        }
-    }
-
-    .filter__display {
-        width: 4%;
-    
-        i {
-            display: block;
-            font-size: 28px;
-            margin: 10px;
-            color: ${({themes}) => `${themes.label}`};
-        }
-    }
-
     nav {
-        width: 48%;
+        width: 46%;
 
         ul {
             text-align: left;
@@ -54,7 +32,7 @@ export const HeaderS = styled.header `
     }
 
     form {
-        width: 48%;
+        width: 46%;
         text-align: right;
 
         input {
@@ -63,6 +41,29 @@ export const HeaderS = styled.header `
             margin: 0;
             border: 0;
             border-radius: 5px;
+        }
+    }
+
+    .theme {
+        width: 4%;
+
+        img {
+            margin: auto 0;
+            width: 50%;
+            height: 50%;
+            background-size: cover;
+        }
+
+    }
+
+    .filter__display {
+        width: 4%;
+    
+        i {
+            display: block;
+            font-size: 28px;
+            margin: 10px;
+            color: ${({themes}) => `${themes.label}`};
         }
     }
 `;

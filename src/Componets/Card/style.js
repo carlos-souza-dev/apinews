@@ -93,13 +93,11 @@ export const CardS = styled.div `
         height: 100%;
         margin: 20px 0;
         position: relative;
-        /* background-image: linear-gradient(rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0.53));  */
 
         img {
         width: 100%;
         height: 100%;
         transition: all .5s;
-        /* filter: blur(1px) contrast(1); */
         }
 
         &:before {

@@ -19,6 +19,7 @@ function Main (props) {
    }
 
    const getTheme = () => {
+     console.log("getTheme")
     setTheme(theme == "dark" ? "ligth" : "dark" );
   }
   
@@ -29,6 +30,8 @@ function Main (props) {
   return (
     <>
       <Header
+        iconTheme={theme}
+        getTheme={getTheme}
         themes={currentTheme}
         onSubmit={props.onSubmit}
         valueSearch={props.valueSearch}

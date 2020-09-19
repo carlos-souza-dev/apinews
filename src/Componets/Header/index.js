@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { HeaderS } from "./style";
+import Moon from '../../assets/moon.png'
+import Sun from '../../assets/sun.png'
 
 // Componentes
 import Button from "../Button";
@@ -44,8 +46,8 @@ function Header (props) {
                 value={"Pesquisar"}
             />
         </form> 
-        <div className="theme"><i class="fas fa-moon"></i></div> 
         <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
+        <div className="theme" onClick={props.getTheme} ><img src={props.iconTheme == "dark" ? Sun :  Moon} alt="icone do tema" /></div> 
       </HeaderS>
     </>
   );
