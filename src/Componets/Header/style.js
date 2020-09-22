@@ -41,6 +41,7 @@ export const HeaderS = styled.header `
             margin: 0;
             border: 0;
             border-radius: 5px;
+            background: ${({themes}) => `${themes.backgroundCard}`};
         }
     }
 

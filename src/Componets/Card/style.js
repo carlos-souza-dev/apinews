@@ -5,9 +5,9 @@ export const WrapperS = styled.div`
     background: ${({themes}) => `${themes.background}`};
 
     button {
-        color: ${({themes}) => `${themes.primary}`};
-        background: ${({themes}) => `${themes.tertiary}`};
-        border: .7px solid ${({themes}) => `${themes.tertiary}`};
+        color: ${({themes}) => `${themes.background}`};
+        background: ${({themes}) => `${themes.description}`};
+        border: .7px solid ${({themes}) => `${themes.description}`};
 
         &:hover {
             background: ${({themes}) => `${themes.tertiary1}`};
@@ -30,21 +30,25 @@ export const ContainerS = styled.div `
     }
 
     &.card--block{
-        display: flex;
-        flex-wrap: wrap;
+        width: 100%;
+        padding: 40px 40px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 50%;
+        grid-gap: 40px 40px;
 
         .card {
-            width: 30%;
+            width: 100%;
             min-width: 250px;
             padding: 16px;
-            margin: 15px auto;
+            margin: 0 auto;
             transition: all 1s ease;
             display: flex;
             flex-direction: column;
 
             .card__title {
                 display: block;
-                flex-grow: 1;
+                /* flex-grow: 1; */
             }
             
             .card__notice, .card__description {
@@ -53,7 +57,7 @@ export const ContainerS = styled.div `
 
             .card__like i {
                 font-size: 24px;
-                bottom: 10px;
+                bottom: 20px;
             }
 
             .card__btn {
@@ -70,12 +74,14 @@ export const CardS = styled.div `
     margin: 72px auto;
     background: ${({themes}) => `${themes.backgroundCard}`};
     padding: 20px;
-    transition: all .2s linear;
+    transition: all .3s linear;
     border-radius: 14px;
     box-shadow: -14px 14px 26px ${({themes}) => `${themes.shadow}`};    
 
     &:hover {
-        transition: all .2s linear;
+        z-index: 1;
+        transform: scale(1.1); 
+        transition: all .3s linear;
         box-shadow: -52px 45px 50px -16px ${({themes}) => `${themes.shadow}`};
 
     }
@@ -90,13 +96,12 @@ export const CardS = styled.div `
 
     .card__image {
         width: 100%;
-        height: 100%;
         margin: 20px 0;
         position: relative;
 
         img {
         width: 100%;
-        height: 100%;
+        background-size: cover;
         transition: all .5s;
         }
 
@@ -133,7 +138,7 @@ export const CardS = styled.div `
     .card__btn {
         display: inline-block;
         background: ${({themes}) => `${themes.colorbutton}`};
-        color: #ffff;
+        color: ${({themes}) => `${themes.background}`};
         border: 2px solid ${({themes}) => `${themes.colorbutton}`};
         border-radius: 5px;
         line-height: 0;

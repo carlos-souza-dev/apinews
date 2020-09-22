@@ -33,10 +33,10 @@ const Card = (props) => {
     };
 
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
-
+    
     return(
         <WrapperS themes={props.themes}>
-            <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"}>
+            <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >
                 <span className="container__news">{props.queryApi.length >= 5 ? `+${props.queryApi.length - news}` : props.queryApi.length } Notícia(s)</span>
                 {qtdeNews.map((notice, indice) => (
                 <CardS themes={props.themes} 

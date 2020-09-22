@@ -196,14 +196,14 @@ $gradient-radial: radial-gradient(#ff6633ff, #d5d7d8ff, #333333ff, #121212ff, #0
 :root{
     primary: #3A4147;
     secundary: #607182;
-    tertiary: #44a36b;
+    tertiary: #28a15a;
     colorbuttonHover: #E3362A;
     colorbutton: #FC5736;
     colorbutton0: #FF745B;
     backgroundCard: #FFFfFF;
     background: #F8F8F8;
-    shadow: rgba(0, 0, 0, 0.24);
-    title: #333333;
+    shadow: rgba(0, 0, 0, 0.475);
+    title: #cc4429;
     description: #3A4147;
     content: #607182;
     label: #EEEFF0;
@@ -212,16 +212,16 @@ $gradient-radial: radial-gradient(#ff6633ff, #d5d7d8ff, #333333ff, #121212ff, #0
 :root{
     primary: #262626;
     secundary: #607182;
-    tertiary: #6FCF97;
-    colorbuttonHover: #E3362A;
-    colorbutton: #FC5736;
-    colorbutton0: #FF745B;
+    tertiary: #104b29;
+    colorbuttonHover: #3bb6ae;
+    colorbutton: #62D5CE;
+    colorbutton0: #83d4cf;
     backgroundCard: #383838;
     background: #333333;
-    shadow: rgba(0, 0, 0, 0.24);
-    title: #2bb8ae;
+    shadow: hsla(0, 0%, 0%, 0.475);
+    title: #33a79fc9;
     description:  #b5b7b8;
     content: #607182;
     label: #EEEFF0;
-    alert: #62D5CE;
+    alert: #FC5736;
 }
