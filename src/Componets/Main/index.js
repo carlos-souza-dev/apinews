@@ -15,13 +15,18 @@ function Main (props) {
 
   useEffect(() => {
     const currentTheme = localStorage.getItem('theme');
+    const currentStyle = localStorage.getItem('style')
     if (currentTheme) {
       setTheme(currentTheme == 'true' ? true : false);
+    }
+    if (currentStyle) {
+      setStyle(currentStyle == 'true' ? true : false);
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('theme', theme)
+    localStorage.setItem('style', style)
   });
 
   const handleSearch = (e) => {
@@ -38,10 +43,13 @@ function Main (props) {
   } 
 
   const activeTheme = (theme ?  Themes.dark : Themes.ligth);
+  const activeStyle = (style ? "fa fa-bars" : "fa fa-th")
   
   return (
     <>
       <Header
+        iconStyle={activeStyle}
+        getStyle={getStyle}
         iconTheme={theme}
         getTheme={getTheme}
         themes={activeTheme}

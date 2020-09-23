@@ -17,16 +17,10 @@ const urls = [
 
 function Header (props) {
 
-    const [ icon, setIcon ] = useState("fa fa-bars");
-
-    const handleSearch = (e) => {
-      props.onChange(e.target.value); 
-    }
-
-   const alterIcon = () => {
-    setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
+  const handleSearch = (e) => {
+    props.onChange(e.target.value); 
   }
-
+  
   return (
     <>
       <HeaderS themes={props.themes}>
@@ -46,7 +40,7 @@ function Header (props) {
                 value={"Pesquisar"}
             />
         </form> 
-        <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
+        <div onClick={props.getStyle} className="filter__display"><i onClick={props.getStyle} className={`${props.iconStyle}`}></i></div> 
         <div className="theme" onClick={props.getTheme} ><img src={props.iconTheme ? Moon : Sun } alt="icone do tema" /></div> 
       </HeaderS>
     </>
