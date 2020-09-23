@@ -19,15 +19,12 @@ const Card = (props) => {
         position();
     })
     
-    const to = () => {
-        const value = position()
-        setTimeout(() => {
-                window.scrollTo(0, value)
-        }, 1);
+    async function to (){
+        const value = await position()
+        window.scrollTo(0, value)
     }
     
     const funcMore = () => {
-        console.log("Mais")
         setNews(news + 5);
         to();        
     };

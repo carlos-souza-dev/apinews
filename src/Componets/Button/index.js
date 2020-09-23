@@ -4,7 +4,6 @@ import { ButtonS } from './style'
 
 
 const Button = (props) => {
-  console.log(props)
     return(
             <ButtonS
               themes={props.themes}

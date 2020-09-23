@@ -1,38 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Themes } from '../../Styles/Themes';
 // Componentes
 import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
+import { getDefaultNormalizer } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 function Main (props) {
 
+
   const [ style, setStyle ] = useState(true);
-  const [ theme, setTheme ] = useState("dark");
+  const [ theme, setTheme ] = useState(true);
 
-    const handleSearch = (e) => {
-      props.onChange(e.target.value); 
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      setTheme(currentTheme == 'true' ? true : false);
     }
+  }, []);
 
-    const getStyle = () => {
-      setStyle(!style)
-   }
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  });
+
+  const handleSearch = (e) => {
+    props.onChange(e.target.value); 
+  }
+
+  
+  const getStyle = () => {
+    setStyle(!style)
+  }
 
    const getTheme = () => {
-     console.log("getTheme")
-    setTheme(theme == "dark" ? "ligth" : "dark" );
-  }
-  
-  const currentTheme = (theme == "dark" ? Themes.ligth : Themes.dark);
-  
-  console.log(currentTheme)
+    setTheme(!theme);
+  } 
 
+  const activeTheme = (theme ?  Themes.dark : Themes.ligth);
+  
   return (
     <>
       <Header
         iconTheme={theme}
         getTheme={getTheme}
-        themes={currentTheme}
+        themes={activeTheme}
         onSubmit={props.onSubmit}
         valueSearch={props.valueSearch}
         handleSearch={handleSearch}
@@ -40,14 +52,14 @@ function Main (props) {
       /> 
       { props.queryApi.length > 0 ? 
         <Card 
-          themes={currentTheme}
+          themes={activeTheme}
           btnFunc={props.funcMore} 
           styleContainer={style} 
           queryApi={props.queryApi} /> :
          ""
        } 
         <Footer 
-          themes={currentTheme}
+          themes={activeTheme}
           className={props.queryApi.length > 0 ? "" : "lot-text"} 
         />
     </>

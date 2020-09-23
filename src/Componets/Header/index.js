@@ -26,7 +26,7 @@ function Header (props) {
    const alterIcon = () => {
     setIcon(icon == "fa fa-th" ? "fa fa-bars" : "fa fa-th")
   }
-  
+
   return (
     <>
       <HeaderS themes={props.themes}>
@@ -47,7 +47,7 @@ function Header (props) {
             />
         </form> 
         <div onClick={props.getStyle} className="filter__display"><i onClick={alterIcon} className={`${icon}`}></i></div> 
-        <div className="theme" onClick={props.getTheme} ><img src={props.iconTheme == "dark" ? Sun :  Moon} alt="icone do tema" /></div> 
+        <div className="theme" onClick={props.getTheme} ><img src={props.iconTheme ? Moon : Sun } alt="icone do tema" /></div> 
       </HeaderS>
     </>
   );
