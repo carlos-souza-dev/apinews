@@ -49,7 +49,6 @@ function Main (props) {
     var idCard = like.target.id;
     if(list.indexOf(idCard) >= 0){
      setList(list.filter(id => id !== idCard));
-      console.log("já existe")
     } else {
       var card = document.getElementById(idCard);
       card.classList.toggle("like");

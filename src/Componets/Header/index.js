@@ -26,8 +26,8 @@ function Header (props) {
       <HeaderS themes={props.themes}>
         <nav>
             <ul>
-                {urls.map((url) => (
-                  <Link to={`${url.to}`}>
+                {urls.map((url, indice) => (
+                  <Link key={indice} to={`${url.to}`}>
                         <li>{url.name}</li>
                     </Link>
                 ))}

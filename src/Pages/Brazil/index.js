@@ -31,9 +31,6 @@ const categorys = [
 
 function Brasil() {
 
-  const APP_KEY = "ca1ce57fdd0f40a8ba1a88403a72a809";
-  const BASE_API = "https://newsapi.org/v2/";
-
   const date = new Date();
   const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
@@ -46,7 +43,7 @@ function Brasil() {
   }, [ query ])
 
   const getNewsapi = async () => {
-    const response = await fetch( `${BASE_API}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${APP_KEY}&pageSize=100`
+    const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
     );
     const data = await response.json();
     setNewsapi(data.articles);
