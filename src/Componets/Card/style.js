@@ -78,6 +78,10 @@ export const CardS = styled.div `
     border-radius: 14px;
     box-shadow: -14px 14px 26px ${({themes}) => `${themes.shadow}`};    
 
+    &.like .card__like i {
+            color: #bd4040;
+    }
+
     &:hover {
         z-index: 1;
         transform: scale(1.1); 
@@ -133,6 +137,10 @@ export const CardS = styled.div `
         bottom: 16px;
         font-size: 32px;
         color: #717171;
+
+        &.like {
+            color: #bd4040;
+        }
     }
 
     .card__btn {

@@ -37,14 +37,20 @@ const Card = (props) => {
                 <span className="container__news">{props.queryApi.length >= 5 ? `+${props.queryApi.length - news}` : props.queryApi.length } Notícia(s)</span>
                 {qtdeNews.map((notice, indice) => (
                 <CardS themes={props.themes} 
-                    className="card" 
+                    className={`card   
+                    ${props.list.indexOf(notice.publishedAt) >= 0 ? 'like' : ''}
+                     `}
                     id={notice.publishedAt} 
                     key={indice}>
                     <h3 className="card__title" >{notice.title ? notice.title : "Sem Título"}</h3>
                     <div className="card__image"><img src={notice.urlToImage ? notice.urlToImage : ImageDefault} alt=""/></div>
                     <h6 className="card__description">{notice.description ? notice.description : "Sem Descrição"}</h6>
                     <p className="card__notice">{notice.content ? notice.content : "Sem notícia"}</p>
-                    <span className="card__like"><i className="fa fa-heart"></i></span>
+                    <span className="card__like" onClick={props.getLikes} >
+                        <i id={notice.publishedAt} 
+                           className={`fa fa-heart`}>
+                        </i>
+                    </span>
                     <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
                 </CardS>
                 ))}

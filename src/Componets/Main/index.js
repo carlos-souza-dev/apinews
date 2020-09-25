@@ -4,29 +4,32 @@ import { Themes } from '../../Styles/Themes';
 import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
-import { getDefaultNormalizer } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 function Main (props) {
 
-
-  const [ style, setStyle ] = useState(true);
   const [ theme, setTheme ] = useState(true);
+  const [ style, setStyle ] = useState(true);
+  const [ list, setList ] = useState([]);
 
   useEffect(() => {
     const currentTheme = localStorage.getItem('theme');
-    const currentStyle = localStorage.getItem('style')
+    const currentStyle = localStorage.getItem('style');
+    const currentLikes = localStorage.getItem('likes');
     if (currentTheme) {
       setTheme(currentTheme == 'true' ? true : false);
     }
     if (currentStyle) {
       setStyle(currentStyle == 'true' ? true : false);
     }
+    if (currentLikes) {
+      setList(JSON.parse(currentLikes));
+    }
   }, []);
-
+  
   useEffect(() => {
     localStorage.setItem('theme', theme)
     localStorage.setItem('style', style)
+    localStorage.setItem('likes', JSON.stringify(list))
   });
 
   const handleSearch = (e) => {
@@ -41,6 +44,19 @@ function Main (props) {
    const getTheme = () => {
     setTheme(!theme);
   } 
+  
+  const getLikes = (like) => {
+    var idCard = like.target.id;
+    if(list.indexOf(idCard) >= 0){
+     setList(list.filter(id => id !== idCard));
+      console.log("já existe")
+    } else {
+      var card = document.getElementById(idCard);
+      card.classList.toggle("like");
+      setList([...list, idCard]);
+      localStorage.setItem('likes', JSON.stringify(list)) 
+    }
+  };
 
   const activeTheme = (theme ?  Themes.dark : Themes.ligth);
   const activeStyle = (style ? "fa fa-bars" : "fa fa-th")
@@ -60,6 +76,8 @@ function Main (props) {
       /> 
       { props.queryApi.length > 0 ? 
         <Card 
+          list={list}
+          getLikes={getLikes}
           themes={activeTheme}
           btnFunc={props.funcMore} 
           styleContainer={style} 
