@@ -5,8 +5,9 @@ import ImageDefault from '../../assets/image-default.jpeg'
 
 const Card = (props) => {
 
-    const [ news, setNews ] = useState(5);
-    
+    const numResponse = props.queryApi.length;
+    const [ news, setNews ] = useState(numResponse < 5 ? numResponse : 5);
+
     useEffect( () => {
     }, [news])
 
@@ -25,8 +26,13 @@ const Card = (props) => {
     }
     
     const funcMore = () => {
-        setNews(news + 5);
-        to();        
+        if(numResponse > news + 5){
+            setNews(news + 5);
+            to(); 
+        } else {
+            setNews(news + (numResponse - news));
+            to();
+        }
     };
 
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
@@ -34,7 +40,7 @@ const Card = (props) => {
     return(
         <WrapperS themes={props.themes}>
             <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >
-                <span className="container__news">{props.queryApi.length >= 5 ? `+${props.queryApi.length - news}` : props.queryApi.length } Notícia(s)</span>
+                <span className="container__news">{numResponse >= 5 ? `+${numResponse - news}` : numResponse } Notícia(s)</span>
                 {qtdeNews.map((notice, indice) => (
                 <CardS themes={props.themes} 
                     className={`card   
@@ -58,7 +64,8 @@ const Card = (props) => {
         <Button
             themes={props.themes}    
             btnFunc={funcMore}
-            value={"Ver mais"} 
+            value={"Ver mais"}
+            style={`${'display: none'}`} 
         />
         </WrapperS>
         )

@@ -42,6 +42,7 @@ export const HeaderS = styled.header `
             border: 0;
             border-radius: 5px;
             background: ${({themes}) => `${themes.backgroundCard}`};
+            color: ${({themes}) => `${themes.label}`};
         }
     }
 
