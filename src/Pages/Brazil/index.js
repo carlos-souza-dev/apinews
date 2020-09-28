@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import Main from "../../Componets/Main";
+import { Themes } from '../../Styles/Themes';
 
 const categorys = [ 
   {
@@ -37,10 +38,22 @@ function Brasil() {
   const [ newsapi, setNewsapi ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('');
+  const [ theme, setTheme ] = useState(true);
 
   useEffect( () => {
     getNewsapi();
-  }, [ query ])
+  }, [ query ]);
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      setTheme(currentTheme == 'true' ? true : false);
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  });
 
   const getNewsapi = async () => {
     const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
@@ -62,10 +75,19 @@ function Brasil() {
     }
     setSearch('')
   }
+
+  const getTheme = () => {
+    setTheme(!theme);
+  } 
+
+  const activeTheme = (theme ?  Themes.dark : Themes.ligth);
   
   return (
     <>    
-      <Main
+      <Main 
+        getTheme={getTheme}
+        activeTheme={activeTheme}
+        iconTheme={theme}
         onSubmit={getSearch}
         valueSearch={search}
         onChange={updateSearch}

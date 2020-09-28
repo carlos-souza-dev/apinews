@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { HeaderS } from "./style";
 import Moon from '../../assets/moon.png'
@@ -17,11 +17,12 @@ const urls = [
 
 function Header (props) {
 
-  const handleSearch = (e) => {
-    props.onChange(e.target.value); 
-  }
-  
-  return (
+
+const handleSearch = (e) => {
+  props.updateSearch(e.target.value); 
+}
+
+ return (
     <>
       <HeaderS themes={props.themes}>
         <nav>
@@ -34,7 +35,7 @@ function Header (props) {
             </ul>
         </nav>
         <form onSubmit={props.onSubmit}>
-            <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={props.handleSearch}/>
+            <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
             <Button
                 themes={props.themes}  
                 value={"Pesquisar"}

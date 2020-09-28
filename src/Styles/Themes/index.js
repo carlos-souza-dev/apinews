@@ -16,6 +16,7 @@ export const Themes = {
         content: '#607182',
         label: '#EEEFF0',
         alert: '#62D5CE',
+        display: 'block'
     },
     dark: {
         primary: '#262626',
@@ -34,5 +35,6 @@ export const Themes = {
         content: '#607182',
         label: '#EEEFF0',
         alert: '#FF745B',
+        display: 'block'
     }
 }

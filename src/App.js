@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 import "./App.css";
 
 /* Componentes */
@@ -10,10 +10,8 @@ import France from "./Pages/France"
 import Usa from "./Pages/Usa"
 
 function App() {
-
   return (
-    <Router>
-      <div className="App">
+    <BrowserRouter>
         <Switch>
           <Route path="/" exact component={All}/>
           <Route path="/top" exact component={Top}/>
@@ -22,8 +20,7 @@ function App() {
           <Route path="/usa" exact component={Usa}/>
           <Redirect from="*" to="/" />
         </Switch>
-      </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

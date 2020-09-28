@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { WrapperS, CardS, ContainerS } from './style';
 import Button from '../Button';
 import ImageDefault from '../../assets/image-default.jpeg'
@@ -34,6 +34,10 @@ const Card = (props) => {
             to();
         }
     };
+    
+    if(numResponse == news){
+        props.themes.display = 'none';
+    }
 
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
     
@@ -65,7 +69,6 @@ const Card = (props) => {
             themes={props.themes}    
             btnFunc={funcMore}
             value={"Ver mais"}
-            style={`${'display: none'}`} 
         />
         </WrapperS>
         )

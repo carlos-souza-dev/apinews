@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const WrapperS = styled.div`
-    padding-bottom: 20px;
+    padding-top: 60px;
+    padding-bottom: 50px;
     background: ${({themes}) => `${themes.background}`};
 
     button {
         color: ${({themes}) => `${themes.background}`};
         background: ${({themes}) => `${themes.description}`};
         border: .7px solid ${({themes}) => `${themes.description}`};
+        display: ${({themes}) => `${themes.display}`};
+        margin: 0 auto;
 
         &:hover {
             background: ${({themes}) => `${themes.tertiary1}`};
@@ -19,6 +22,7 @@ export const WrapperS = styled.div`
 export const ContainerS = styled.div `
     margin: 0 auto;
     padding: 16px 0 52px 0;
+    background: ${({themes}) => `${themes.background}`};
 
     .container__news {
         color: ${({themes}) => `${themes.alert}`};
@@ -31,7 +35,7 @@ export const ContainerS = styled.div `
 
     &.card--block{
         width: 100%;
-        padding: 40px 40px;
+        padding: 60px 40px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 50%;

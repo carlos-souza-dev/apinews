@@ -1,17 +1,30 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import { Themes } from '../../Styles/Themes'
-import Main from "../../Componets/Main"
+import { Themes } from '../../Styles/Themes';
+import Main from "../../Componets/Main";
 
 function All () {
 
   const [ newsapi, setNewsapi ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('q=*&');
+  const [ theme, setTheme ] = useState(true);
   
   useEffect( () => {
     getNewsapi();
   }, [ query ])
+
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      setTheme(currentTheme == 'true' ? true : false);
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  });
 
   const getNewsapi = async () => {
     const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}everything?${query}apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
@@ -34,16 +47,24 @@ function All () {
     setSearch('')
   }
 
+  const getTheme = () => {
+    setTheme(!theme);
+  } 
+
+  const activeTheme = (theme ?  Themes.dark : Themes.ligth);
+  
   return (
     <>    
-      <Main
-        themes={Themes.dark}
+      <Main 
+        getTheme={getTheme}
+        activeTheme={activeTheme}
+        iconTheme={theme}
         onSubmit={getSearch}
         valueSearch={search}
-        onChange={updateSearch}
+        updateSearch={updateSearch}
         queryApi={newsapi}
         setSearch={setSearch}
-        />
+      />
     </>
   );
 }
