@@ -39,6 +39,14 @@ const Card = (props) => {
         props.themes.display = 'none';
     }
 
+    console.log("Container",props.styleContainer)
+    const teste = !props.styleContainer ? props.queryApi[2].title.length > 20 ?
+    props.queryApi[2].title.slice(0, 20) + "..." :
+    props.queryApi[2].title : 
+    props.queryApi[2].title;
+
+    console.log(teste)
+
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
     
     return(
@@ -52,7 +60,12 @@ const Card = (props) => {
                      `}
                     id={notice.publishedAt} 
                     key={indice}>
-                    <h3 className="card__title" >{notice.title ? notice.title : "Sem Título"}</h3>
+                    <h3 className="card__title" >{
+                        !props.styleContainer ? props.queryApi[2].title.length > 20 ?
+                        `${notice.title.slice(0, 50) + "..."}` :
+                        notice.title : 
+                        notice.title}
+                    </h3>
                     <div className="card__image"><img src={notice.urlToImage ? notice.urlToImage : ImageDefault} alt=""/></div>
                     <h6 className="card__description">{notice.description ? notice.description : "Sem Descrição"}</h6>
                     <p className="card__notice">{notice.content ? notice.content : "Sem notícia"}</p>

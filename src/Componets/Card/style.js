@@ -31,15 +31,29 @@ export const ContainerS = styled.div `
         left: 50%;
         transform: translateX(-50%);
         z-index: 2;
+
+        @media (max-width: 414px){
+            top: 80px;
+        }  
     }
 
     &.card--block{
         width: 100%;
+        height: auto;
         padding: 60px 40px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 50%;
+        grid-template-rows: repeat(1, 1fr);
         grid-gap: 40px 40px;
+
+        @media (max-width: 1024px){
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        @media (max-width: 414px){
+            display: flex;
+        }
 
         .card {
             width: 100%;
@@ -50,9 +64,12 @@ export const ContainerS = styled.div `
             display: flex;
             flex-direction: column;
 
+            @media (max-width: 1024px){
+                /* max-height: 350px; */
+            }
+
             .card__title {
                 display: block;
-                /* flex-grow: 1; */
             }
             
             .card__notice, .card__description {
@@ -80,7 +97,12 @@ export const CardS = styled.div `
     padding: 20px;
     transition: all .3s linear;
     border-radius: 14px;
-    box-shadow: -14px 14px 26px ${({themes}) => `${themes.shadow}`};    
+    box-shadow: -14px 14px 26px ${({themes}) => `${themes.shadow}`};  
+
+    @media (max-width: 414px){
+        width: 338px;
+        margin: 40px auto;
+    }  
 
     &.like .card__like i {
             color: #bd4040;
@@ -147,6 +169,9 @@ export const CardS = styled.div `
         }
     }
 
+        text-align: center;
+
+
     .card__btn {
         display: inline-block;
         background: ${({themes}) => `${themes.colorbutton}`};
@@ -155,7 +180,7 @@ export const CardS = styled.div `
         border-radius: 5px;
         line-height: 0;
         font-size: 1em;
-        margin: 0 1em;
+        align-self: center;
         padding: 14px 16px;
         border-radius: 5px;
         transition: all .7s ease;

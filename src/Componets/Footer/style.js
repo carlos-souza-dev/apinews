@@ -5,7 +5,7 @@ export const FooterS = styled.footer `
     width: 100%;
     height: 50px;
     line-height:50px;
-    align-items: center;
+    text-align: center;
     color: ${({themes}) => `${themes.label}`};
     background-color: ${({themes}) => `${themes.primary}`};
 

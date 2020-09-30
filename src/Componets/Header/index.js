@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { HeaderS } from "./style";
 import Moon from '../../assets/moon.png'
@@ -17,15 +17,26 @@ const urls = [
 
 function Header (props) {
 
+const [ menu, setMenu ] = useState(false);
 
 const handleSearch = (e) => {
   props.updateSearch(e.target.value); 
 }
 
+const getMenu = () => {
+  setMenu(!menu)
+}
+console.log("Menu", menu)
+
  return (
     <>
-      <HeaderS themes={props.themes}>
+      <HeaderS themes={props.themes} menu={menu}>
+        <div className="menu" onClick={getMenu} >
+          <div className="hamburger-open"></div>
+          <div className="hamburger-close"></div>
+        </div>
         <nav>
+            
             <ul>
                 {urls.map((url, indice) => (
                   <Link key={indice} to={`${url.to}`}>
