@@ -31,7 +31,7 @@ function Top () {
   });
 
   const getNewsapi = async () => {
-    const response = await fetch( `https://newsapi.org/v2/top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=ca1ce57fdd0f40a8ba1a88403a72a809&pageSize=100`
+    const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}${country}&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
     );
     const data = await response.json();
     setNewsapi(data.articles);
