@@ -7,13 +7,13 @@ export const ContainerS = styled.section`
 
     button {
         color: ${({themes}) => `${themes.background}`};
-        background: ${({themes}) => `${themes.description}`};
-        border: .7px solid ${({themes}) => `${themes.description}`};
+        background: ${({themes}) => `${themes.tertiary1}`};
+        border: .7px solid ${({themes}) => `${themes.tertiary1}`};
         display: ${({themes}) => `${themes.display}`};
 
         &:hover {
-            background: ${({themes}) => `${themes.tertiary1}`};
-            border: .7px solid ${({themes}) => `${themes.tertiary1}`};
+            background: ${({themes}) => `${themes.tertiary}`};
+            border: .7px solid ${({themes}) => `${themes.tertiary}`};
         }
     }
 `;

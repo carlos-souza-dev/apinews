@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HeaderS } from "./style";
 import Moon from '../../assets/moon.png'
 import Sun from '../../assets/sun.png'
-
+ 
 // Componentes
 import Button from "../Button";
 
@@ -26,7 +26,6 @@ const handleSearch = (e) => {
 const getMenu = () => {
   setMenu(!menu)
 }
-console.log("Menu", menu)
 
  return (
     <>

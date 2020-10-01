@@ -2,7 +2,6 @@ import styled from 'styled-components'
   
 export const ButtonS = styled.button`
     /* Adapt the colors based on primary prop */
-    background: ${({themes}) => `${themes.colorbutton}`};
     color: ${({themes}) => `${themes.background}`};
     line-height: 0;
     font-size: 1em;

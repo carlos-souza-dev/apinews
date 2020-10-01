@@ -2,7 +2,7 @@ export const Themes = {
     ligth: {
         primary: '#3A4147',
         secundary: '#607182',
-        tertiary: '#54ca85',
+        tertiary: '#177b40',
         tertiary1: '#28a15a',
         hover: '#E3362A',
         colorbutton: '#FC5736',
@@ -21,8 +21,8 @@ export const Themes = {
     dark: {
         primary: '#262626',
         secundary: '#607182',
-        tertiary: '#2f744c',
-        tertiary1: '#28a15a',
+        tertiary: '#8ca099',
+        tertiary1: '#cbeadf',
         hover: '#2ca099',
         colorbutton: '#62D5CE',
         colorbutton0: '#83d4cf',

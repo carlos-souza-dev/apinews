@@ -39,20 +39,12 @@ const Card = (props) => {
         props.themes.display = 'none';
     }
 
-    console.log("Container",props.styleContainer)
-    const teste = !props.styleContainer ? props.queryApi[2].title.length > 20 ?
-    props.queryApi[2].title.slice(0, 20) + "..." :
-    props.queryApi[2].title : 
-    props.queryApi[2].title;
-
-    console.log(teste)
-
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
     
     return(
         <WrapperS themes={props.themes}>
             <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >
-                <span className="container__news">{numResponse >= 5 ? `+${numResponse - news}` : numResponse } Notícia(s)</span>
+                <span className="container__news" style={{display: `${(numResponse - news) < 1 ? 'none' : 'block'}`}}  >{numResponse >= 5 ? `+${numResponse - news} Notícia(s)` : numResponse }</span>
                 {qtdeNews.map((notice, indice) => (
                 <CardS themes={props.themes} 
                     className={`card   

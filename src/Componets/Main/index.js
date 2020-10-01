@@ -8,17 +8,12 @@ import Footer from "../Footer";
 
 function Main (props) {
 
-  // const [ theme, setTheme ] = useState(true);
   const [ style, setStyle ] = useState(true);
   const [ list, setList ] = useState([]);
 
   useEffect(() => {
-    // const currentTheme = localStorage.getItem('theme');
     const currentStyle = localStorage.getItem('style');
     const currentLikes = localStorage.getItem('likes');
-    // if (currentTheme) {
-    //   setTheme(currentTheme == 'true' ? true : false);
-    // }
     if (currentStyle) {
       setStyle(currentStyle == 'true' ? true : false);
     }
@@ -28,7 +23,6 @@ function Main (props) {
   }, []);
   
   useEffect(() => {
-    // localStorage.setItem('theme', theme)
     localStorage.setItem('style', style)
     localStorage.setItem('likes', JSON.stringify(list))
   });
@@ -36,10 +30,6 @@ function Main (props) {
   const getStyle = () => {
     setStyle(!style)
   }
-
-  //  const getTheme = () => {
-  //   setTheme(!theme);
-  // } 
   
   const getLikes = (like) => {
     var idCard = like.target.id;
@@ -53,10 +43,8 @@ function Main (props) {
     }
   };
 
-  // const activeTheme = (theme ?  Themes.dark : Themes.ligth);
   const activeStyle = (style ? "fa fa-bars" : "fa fa-th")
   
-  console.log(props.queryApi)
   return (
     <ContainerS themes={props.activeTheme}>
       <Header
