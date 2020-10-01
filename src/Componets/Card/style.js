@@ -5,6 +5,10 @@ export const WrapperS = styled.div`
     padding-bottom: 50px;
     background: ${({themes}) => `${themes.background}`};
 
+    @media (max-width: 414px){
+        padding-top: 0px;
+    }  
+
     button {
         color: ${({themes}) => `${themes.background}`};
         background: ${({themes}) => `${themes.description}`};
@@ -24,6 +28,10 @@ export const ContainerS = styled.div `
     padding: 16px 0 52px 0;
     background: ${({themes}) => `${themes.background}`};
 
+    @media (max-width: 414px){
+        padding: 44px 0 52px 0;
+    }  
+
     .container__news {
         color: ${({themes}) => `${themes.alert}`};
         position: fixed;
@@ -32,12 +40,18 @@ export const ContainerS = styled.div `
         transform: translateX(-50%);
         z-index: 2;
 
+        @media (max-width: 768px){
+            font-size: 14px;
+        }
+
         @media (max-width: 414px){
-            top: 80px;
+            display: none;
         }  
     }
 
-    &.card--block{
+    @media (min-width: 768px) {
+
+        &.card--block{
         width: 100%;
         height: auto;
         padding: 60px 40px;
@@ -46,9 +60,19 @@ export const ContainerS = styled.div `
         grid-template-rows: repeat(1, 1fr);
         grid-gap: 40px 40px;
 
+        @media (max-width: 1440px){
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-rows: auto;
+        }
+        
         @media (max-width: 1024px){
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
+        }
+
+        @media (max-width: 768px){
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-rows: auto;
         }
 
         @media (max-width: 414px){
@@ -86,6 +110,7 @@ export const ContainerS = styled.div `
             }
         }
     }
+}
 `;
 
 export const CardS = styled.div `

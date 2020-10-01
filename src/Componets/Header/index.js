@@ -32,10 +32,10 @@ console.log("Menu", menu)
     <>
       <HeaderS themes={props.themes} menu={menu}>
         <div className="menu" onClick={getMenu} >
-          <div className="hamburger-open"></div>
-          <div className="hamburger-close"></div>
+          <div className="menu__hamburger"></div>
+          <span className="menu__hamburger-is"></span>
         </div>
-        <nav>
+        <nav className="menu__nav">
             
             <ul>
                 {urls.map((url, indice) => (
@@ -45,8 +45,8 @@ console.log("Menu", menu)
                 ))}
             </ul>
         </nav>
-        <form onSubmit={props.onSubmit}>
-            <input  placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
+        <form className="from-search" onSubmit={props.onSubmit}>
+            <input className="search-input" placeholder="Pesquisar" type="text" value={props.valueSearch} onChange={handleSearch}/>
             <Button
                 themes={props.themes}  
                 value={"Pesquisar"}

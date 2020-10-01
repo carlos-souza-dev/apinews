@@ -10,6 +10,7 @@ export const ButtonS = styled.button`
     padding: 14px 16px;
     border: 2px solid ${({themes}) => `${themes.colorbutton}`};
     border-radius: 5px;
+    cursor: pointer;
     transition: all .7s ease;
 
     &:hover {
