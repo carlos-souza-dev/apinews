@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { WrapperS, CardS, ContainerS } from './style';
-import Button from '../Button';
-import ImageDefault from '../../assets/image-default.jpeg'
+import React, { useEffect, useState } from "react";
+import { WrapperS, CardS, ContainerS } from "./style";
+import Button from "../Button";
+import ImageDefault from "../../assets/image-default.jpeg"
 
 const Card = (props) => {
 
@@ -16,7 +16,7 @@ const Card = (props) => {
         return windowTop;
     }
     
-    window.addEventListener('scroll', function() {
+    window.addEventListener("scroll", function() {
         position();
     })
     
@@ -35,8 +35,8 @@ const Card = (props) => {
         }
     };
     
-    if(numResponse == news){
-        props.themes.display = 'none';
+    if(numResponse === news){
+        props.themes.display = "none";
     }
 
     const qtdeNews = Array.from({length:news}, (v, i) => props.queryApi[i]);
@@ -44,11 +44,11 @@ const Card = (props) => {
     return(
         <WrapperS themes={props.themes}>
             <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >
-                <span className="container__news" style={{display: `${(numResponse - news) < 1 ? 'none' : 'block'}`}}  >{numResponse >= 5 ? `+${numResponse - news} Notícia(s)` : numResponse }</span>
+                <span className="container__news" style={{display: `${(numResponse - news) < 1 ? "none" : "block"}`}}  >{numResponse >= 5 ? `+${numResponse - news} Notícia(s)` : numResponse }</span>
                 {qtdeNews.map((notice, indice) => (
                 <CardS themes={props.themes} 
                     className={`card   
-                    ${props.list.indexOf(notice.publishedAt) >= 0 ? 'like' : ''}
+                    ${props.list.indexOf(notice.publishedAt) >= 0 ? "like" : ""}
                      `}
                     id={notice.publishedAt} 
                     key={indice}>
@@ -66,7 +66,7 @@ const Card = (props) => {
                            className={`fa fa-heart`}>
                         </i>
                     </span>
-                    <a className="card__btn" target="_blank" href={notice.url}>Ver notícia</a>
+                    <a className="card__btn" rel="noopener noreferrer" target="_blank" href={notice.url}>Ver notícia</a>
                 </CardS>
                 ))}
             </ContainerS>

@@ -1,66 +1,39 @@
 import React, {useEffect, useState} from "react";
 
 import Main from "../../Componets/Main";
-import { Themes } from '../../Styles/Themes';
-
-const categorys = [ 
-  {
-    value: "business",
-    option: "Negócios"
-  },   
-  {
-    value: "entertainment",
-    option: "Entretenimento",
-  },
-  {
-    value: "health",
-    option: "Saúde",
-  },
-  {
-    value: "science",
-    option: "Ciência",
-  },
-  {
-    value: "sports",
-    option: "Esporte",
-  },
-  {
-    value: "technology",
-    option: "Tecnologia"
-  },
-]
+import { Themes } from "../../Styles/Themes";
 
 function Brasil() {
-
-  const date = new Date();
-  const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
   
   const [ newsapi, setNewsapi ] = useState([]);
-  const [ search, setSearch ] = useState('');
-  const [ query, setQuery ] = useState('');
+  const [ search, setSearch ] = useState("");
+  const [ query, setQuery ] = useState("");
   const [ theme, setTheme ] = useState(true);
 
   useEffect( () => {
+    const date = new Date();
+    const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+
+    const getNewsapi = async () => {
+      const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
+      );
+      const data = await response.json();
+      setNewsapi(data.articles);
+    }
+
     getNewsapi();
   }, [ query ]);
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem('theme');
+    const currentTheme = localStorage.getItem("theme");
     if (currentTheme) {
-      setTheme(currentTheme == 'true' ? true : false);
+      setTheme(currentTheme ==="true" ? true : false);
     }
   }, []);
   
   useEffect(() => {
-    localStorage.setItem('theme', theme)
+    localStorage.setItem("theme", theme)
   });
-
-  const getNewsapi = async () => {
-    const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
-    );
-    const data = await response.json();
-    setNewsapi(data.articles);
-  }
 
   const updateSearch = e => {
      setSearch(e);
@@ -68,12 +41,12 @@ function Brasil() {
   
   const getSearch = e => {
     e.preventDefault();
-    if(search == ''){
-      setQuery('');
+    if(search === ""){
+      setQuery("");
     } else {
       setQuery(`q=${search}&`);
     }
-    setSearch('')
+    setSearch("")
   }
 
   const getTheme = () => {

@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
 
-import { Themes } from '../../Styles/Themes';
+import { Themes } from "../../Styles/Themes";
 import Main from "../../Componets/Main";
 
 function All () {
 
   const [ newsapi, setNewsapi ] = useState([]);
-  const [ search, setSearch ] = useState('');
-  const [ query, setQuery ] = useState('q=*&');
+  const [ search, setSearch ] = useState("");
+  const [ query, setQuery ] = useState("q=*&");
   const [ theme, setTheme ] = useState(true);
   
   useEffect( () => {
+    const getNewsapi = async () => {
+      const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}everything?${query}apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
+      );
+      const data = await response.json();
+      setNewsapi(data.articles);
+    }
     getNewsapi();
-  }, [ query ])
+  },[query]);
 
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem('theme');
+    const currentTheme = localStorage.getItem("theme");
     if (currentTheme) {
-      setTheme(currentTheme == 'true' ? true : false);
+      setTheme(currentTheme === "true" ? true : false);
     }
   }, []);
   
   useEffect(() => {
-    localStorage.setItem('theme', theme)
+    localStorage.setItem("theme", theme)
   });
-
-  const getNewsapi = async () => {
-    const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}everything?${query}apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
-    );
-    const data = await response.json();
-    setNewsapi(data.articles);
-  }
 
   const updateSearch = e => {
      setSearch(e);
@@ -39,12 +38,12 @@ function All () {
   
   const getSearch = e => {
     e.preventDefault();
-    if(search == ''){
-      setQuery('q=*&');
+    if(search === ""){
+      setQuery("q=*&");
     } else {
       setQuery(`q=${search}&`);
     }
-    setSearch('')
+    setSearch("")
   }
 
   const getTheme = () => {

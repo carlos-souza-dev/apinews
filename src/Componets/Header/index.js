@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { HeaderS } from "./style";
-import Moon from '../../assets/moon.png'
-import Sun from '../../assets/sun.png'
+import Moon from "../../assets/moon.png"
+import Sun from "../../assets/sun.png"
  
 // Componentes
 import Button from "../Button";

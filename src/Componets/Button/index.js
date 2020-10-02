@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { ButtonS } from './style'
+import { ButtonS } from "./style"
 
 
 const Button = (props) => {

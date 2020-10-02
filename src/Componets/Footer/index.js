@@ -1,5 +1,5 @@
-import React from 'react';
-import { FooterS } from './style'
+import React from "react";
+import { FooterS } from "./style"
 
 const Footer = (props) => {
 
