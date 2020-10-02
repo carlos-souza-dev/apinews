@@ -1,9 +1,6 @@
 {
   "name": "apinews",
   "version": "0.1.0",
-  "engines": {
-    "node": "12.16.3"
-  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -19,7 +16,8 @@
     "styled-components": "^5.2.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "server": "node ./server.js",
+    "start": "npm run server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,5 +36,8 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
+  },
+  "engines": {
+    "node": "12.16.3"
   }
 }
