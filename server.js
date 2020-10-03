@@ -15,6 +15,16 @@ app.get('/ping', function (req, res) {
  return res.send('pong');
 });
 
+app.get('/api', function (req, res) {
+
+    const response = fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=ca1ce57fdd0f40a8ba1a88403a72a809`);
+    response.then((res)=>{
+      return res.json();
+    }).then((json)=>{ 
+      res.send(json)
+    })
+});
+
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
