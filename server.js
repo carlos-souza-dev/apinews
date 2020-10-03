@@ -1,12 +1,12 @@
 const express = require('express');
 const fetch = require('node-fetch');
-const cors = require('cors');
+// const cors = require('cors');
 const favicon = require('express-favicon');
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 app.use(favicon(__dirname + '/build/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
