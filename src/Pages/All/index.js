@@ -11,18 +11,15 @@ function All () {
   const [ theme, setTheme ] = useState(true);
   
   useEffect( () => {
-        
-      const getNewsapi = async () => {
-        const response = await fetch(`http://localhost:5000/api/`
-        );
-        const data = await response.json();
-        setNewsapi(data.articles);
-      }
-  
-      getNewsapi();
-
+    const getNewsapi = async () => {
+      const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}everything?${query}apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
+      );
+      const data = await response.json();
+      setNewsapi(data.articles);
+    }
+    getNewsapi();
   },[query]);
-  console.log("setNews", newsapi)
+
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
