@@ -13,16 +13,13 @@ function All () {
   useEffect( () => {
         
       const getNewsapi = async () => {
-        const response = await fetch(`http://localhost:5000/api/`
-        );
+        const response = await fetch(`http://localhost:5000/api/`);
         const data = await response.json();
         setNewsapi(data.articles);
-      }
-  
+      }  
       getNewsapi();
 
   },[query]);
-  console.log("setNews", newsapi)
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");

@@ -11,16 +11,14 @@ function Usa () {
   const [ theme, setTheme ] = useState(true);
 
   useEffect( () => {
-    const date = new Date();
-    const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 
     const getNewsapi = async () => {
-      const response = await fetch( `${process.env.REACT_APP_UNSPLASH_URL}top-headlines?${query}country=us&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`
-      );
+      const response = await fetch(`http://localhost:5000/api/usa`);
       const data = await response.json();
       setNewsapi(data.articles);
     }
     getNewsapi();
+
   }, [ query ]);
 
   useEffect(() => {

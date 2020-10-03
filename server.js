@@ -1,12 +1,13 @@
 const express = require('express');
+require("dotenv").config();
 const fetch = require('node-fetch');
-// const cors = require('cors');
+const cors = require('cors');
 const favicon = require('express-favicon');
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 app.use(favicon(__dirname + '/build/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
@@ -15,14 +16,57 @@ app.get('/ping', function (req, res) {
  return res.send('pong');
 });
 
+const date = new Date();
+const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+
 app.get('/api', function (req, res) {
 
-    const response = fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=ca1ce57fdd0f40a8ba1a88403a72a809`);
+    const response = fetch(`${process.env.APP_URL}everything?q=*&apiKey=${process.env.APP_KEY}&pageSize=100`);
     response.then((res)=>{
       return res.json();
     }).then((json)=>{ 
       res.send(json)
     })
+});
+
+app.get('/api/brasil', function (req, res) {
+
+  const response = fetch(`${process.env.APP_URL}top-headlines?country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+  response.then((res)=>{
+    return res.json();
+  }).then((json)=>{ 
+    res.send(json)
+  })
+});
+
+app.get('/api/franca', function (req, res) {
+
+  const response = fetch(`${process.env.APP_URL}top-headlines?country=fr&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+  response.then((res)=>{
+    return res.json();
+  }).then((json)=>{ 
+    res.send(json)
+  })
+});
+
+app.get('/api/top', function (req, res) {
+
+  const response = fetch(`${process.env.APP_URL}top-headlines?country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+  response.then((res)=>{
+    return res.json();
+  }).then((json)=>{ 
+    res.send(json)
+  })
+});
+
+app.get('/api/usa', function (req, res) {
+
+  const response = fetch(`${process.env.APP_URL}top-headlines?country=us&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+  response.then((res)=>{
+    return res.json();
+  }).then((json)=>{ 
+    res.send(json)
+  })
 });
 
 app.get('/*', function (req, res) {
