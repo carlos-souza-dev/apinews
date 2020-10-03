@@ -13,7 +13,10 @@ function Brasil() {
   useEffect( () => {
 
     const getNewsapi = async () => {
-      const response = await fetch(`http://localhost:5000/api/brasil`);
+      const response =  
+      window.location.hostname.includes('localhost')
+      ? await fetch(`http://localhost:5000/api/brasil`)
+      : await fetch(`https://react-apinews.herokuapp.com/api/brasil`);
       const data = await response.json();
       setNewsapi(data.articles);
     }

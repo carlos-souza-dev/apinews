@@ -13,7 +13,10 @@ function Top () {
   useEffect( () => {
 
     const getNewsapi = async () => {
-      const response = await fetch(`http://localhost:5000/api/top`);
+      const response =  
+      window.location.hostname.includes('localhost')
+      ? await fetch(`http://localhost:5000/api/top`)
+      : await fetch(`https://react-apinews.herokuapp.com/api/top`);
       const data = await response.json();
       setNewsapi(data.articles);
     }
