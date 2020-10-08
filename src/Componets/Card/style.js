@@ -127,6 +127,7 @@ export const CardS = styled.div `
     @media (max-width: 414px){
         width: 338px;
         margin: 40px auto;
+        font-size: 12px;
     }  
 
     &.like .card__like i {
@@ -142,11 +143,11 @@ export const CardS = styled.div `
     }
 
     .card__title {
-        color: #3c4d4c;
         flex-grow: 1;
         color: ${({themes}) => `${themes.title}`};
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
+        font-size: 14px;
     }
 
     .card__image {

@@ -7,7 +7,7 @@ const Button = (props) => {
     return(
             <ButtonS
               themes={props.themes}
-              onClick={ props.btnFunc}
+              onClick={props.btnFunc}
             >
               {props.value}
             </ButtonS>

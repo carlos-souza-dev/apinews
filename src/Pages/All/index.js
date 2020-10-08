@@ -9,20 +9,22 @@ function All () {
   const [ search, setSearch ] = useState("");
   const [ query, setQuery ] = useState("q=*&");
   const [ theme, setTheme ] = useState(true);
+  const [ url, setUrl ] = useState(
+    window.location.hostname.includes('localhost')
+      ? `http://localhost:5000/api`
+      : `https://react-apinews.herokuapp.com/api`
+  )
   
   useEffect( () => {
-        
-      const getNewsapi = async () => {
-        const response =  
-        window.location.hostname.includes('localhost')
-        ? await fetch(`http://localhost:5000/api`)
-        : await fetch(`https://react-apinews.herokuapp.com/api`);
-        const data = await response.json();
-        setNewsapi(data.articles);
-      }  
-      getNewsapi();
 
-  },[query]);
+    const getNewsapi = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      setNewsapi(data.articles);
+    }
+    getNewsapi();
+    
+  }, [ query ]);
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
@@ -58,6 +60,7 @@ function All () {
   return (
     <>    
       <Main 
+        url={url}
         getTheme={getTheme}
         activeTheme={activeTheme}
         iconTheme={theme}

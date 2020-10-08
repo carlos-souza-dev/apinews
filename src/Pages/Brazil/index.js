@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-
 import Main from "../../Componets/Main";
 import { Themes } from "../../Styles/Themes";
 
@@ -9,14 +8,16 @@ function Brasil() {
   const [ search, setSearch ] = useState("");
   const [ query, setQuery ] = useState("");
   const [ theme, setTheme ] = useState(true);
-
+  const [ url, setUrl ] = useState(
+    window.location.hostname.includes('localhost')
+      ? `http://localhost:5000/api/brasil`
+      : `https://react-apinews.herokuapp.com/api/brasil`
+  )
+  
   useEffect( () => {
 
     const getNewsapi = async () => {
-      const response =  
-      window.location.hostname.includes('localhost')
-      ? await fetch(`http://localhost:5000/api/brasil`)
-      : await fetch(`https://react-apinews.herokuapp.com/api/brasil`);
+      const response = await fetch(url);
       const data = await response.json();
       setNewsapi(data.articles);
     }
@@ -57,15 +58,15 @@ function Brasil() {
   
   return (
     <>    
-      <Main 
+      <Main
+        url={url} 
         getTheme={getTheme}
         activeTheme={activeTheme}
         iconTheme={theme}
         onSubmit={getSearch}
         valueSearch={search}
-        onChange={updateSearch}
+        updateSearch={updateSearch}
         queryApi={newsapi}
-        setSearch={setSearch}
         />
     </>
   );
