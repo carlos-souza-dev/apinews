@@ -44,14 +44,14 @@ app.get('/api/brasil', function (req, res) {
   })
 });
 
-app.post('/api/brasil/search', async  (req, res) => {
+// app.post('/api/brasil/search', async  (req, res) => {
 
-  const text = await ""+req.body.text;
+//   const text = await ""+req.body.text;
   
-  const response = await fetch(`${process.env.APP_URL}top-headlines?q=${text}&country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
-  const data = await response.json();
-  res.send(data)
-});
+//   const response = await fetch(`${process.env.APP_URL}top-headlines?q=${text}&country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+//   const data = await response.json();
+//   res.send(data)
+// });
 
 app.get('/api/franca', function (req, res) {
 
@@ -86,4 +86,5 @@ app.get('/api/usa', function (req, res) {
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
 app.listen(port);

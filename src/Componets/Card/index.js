@@ -35,6 +35,8 @@ const Card = (props) => {
         }
     };
 
+    console.log("Api",props.queryApi)
+
     if (numResponse === news) {
         props.themes.display = "none";
     }
@@ -53,7 +55,7 @@ const Card = (props) => {
                         id={notice.publishedAt}
                         key={indice}>
                         <h3 className="card__title" >{
-                            !props.styleContainer ? props.queryApi[2].title.length > 20 ?
+                            !props.styleContainer ? props.queryApi[indice].title.length > 50 ?
                                 `${notice.title.slice(0, 50) + "..."}` :
                                 notice.title :
                                 notice.title}

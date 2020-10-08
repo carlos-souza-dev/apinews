@@ -6,6 +6,10 @@ import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
 
+const date = new Date();
+const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+
+
 function Main (props) {
 
   const [ style, setStyle ] = useState(true);
@@ -14,13 +18,14 @@ function Main (props) {
   const [ query, setQuery ] = useState([]);
   
   const queryFunc = async () => {
-    // setQuery( await axios.post(`${props.url}/search`).then(res => {
-    //     console.log("Response",res)
-    //     return res
-    //   }))
-    const response = await fetch(`${props.url}/search`);
-      const data = await response.json();
-      setQuery(data.articles);
+    setQuery( await axios.get(`${process.env.REACT_APP_UNSPLASH_URL}top-headlines?q=${input}&country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`).then(res => {
+        console.log("Response",res)
+        return res.data.articles
+      }))
+    // const response = await fetch(`${process.env.REACT_APP_UNSPLASH_URL}top-headlines?q=${input}&country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`);
+    //   const data = await response.json();
+    //   console.log("RESPONSE",data)
+    //   setQuery(data.articles);
     };
 
   const handleInput = (e) => {
@@ -28,9 +33,9 @@ function Main (props) {
   }
 
   const handleSubmit = () => {
-    axios.post(`${props.url}/search`, {
-      text: input,      
-    });
+    // axios.post(`${props.url}/search`, {
+    //   text: input,      
+    // });
   };
 
   useEffect(() => {
@@ -66,8 +71,6 @@ function Main (props) {
       localStorage.setItem("likes", JSON.stringify(list)) 
     }
   };
-  
-  console.log("Query",query)
   
   return (
     <ContainerS themes={props.activeTheme}>
