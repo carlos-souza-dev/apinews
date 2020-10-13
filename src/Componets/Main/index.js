@@ -17,26 +17,41 @@ function Main (props) {
   const [ input, setInput ] = useState('');
   const [ query, setQuery ] = useState([]);
   
-  const queryFunc = async () => {
-    setQuery( await axios.get(`${process.env.REACT_APP_UNSPLASH_URL}top-headlines?q=${input}&country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`).then(res => {
-        console.log("Response",res)
-        return res.data.articles
-      }))
-    // const response = await fetch(`${process.env.REACT_APP_UNSPLASH_URL}top-headlines?q=${input}&country=pt&from=${today}&to=${today}&apiKey=${process.env.REACT_APP_UNSPLASH_KEY}&pageSize=100`);
-    //   const data = await response.json();
-    //   console.log("RESPONSE",data)
-    //   setQuery(data.articles);
-    };
+  // const queryFunc = async () => {
+  //     const response = await axios.post(`http://localhost:5000/api/brasil/search`);
+  //     // const response = await fetch(`http://localhost:5000/api/brasil/search`);
+  //     // const data = await response.json();
+  //     console.log("Resposta",response.data.articles)
+  //     setQuery(response.data.articles);
+  //   };
+
+  const queryFunction = () => {
+    setQuery([])
+    let inputLower = input.toLowerCase;
+    let inputUper = input.toUpperCase;
+    let inputFirts = input.slice(0,1).toUpperCase() + input.slice(1, input.length);
+    const newQuery = [];
+
+    props.queryApi.forEach(news => {
+      if(news.title.indexOf(inputLower) >= 0 
+        || news.title.indexOf(inputUper) >= 0
+        || news.title.indexOf(inputFirts) >= 0){
+          newQuery.push(news)
+        }
+      });
+      setQuery(newQuery)
+    console.log(query)
+  }
 
   const handleInput = (e) => {
     setInput(e.target.value);
   }
 
-  const handleSubmit = () => {
-    // axios.post(`${props.url}/search`, {
-    //   text: input,      
-    // });
-  };
+  // const handleSubmit = () => {
+  //   axios.post(`http://localhost:5000/api/brasil/search`, {
+  //     text: input,      
+  //   });
+  // };
 
   useEffect(() => {
     const currentStyle = localStorage.getItem("style");
@@ -82,9 +97,9 @@ function Main (props) {
         themes={props.activeTheme}
         onSubmit={props.onSubmit}
         handleInput={handleInput}
-        queryFunc={queryFunc}
+        queryFunction={queryFunction}
         input={input}
-        handleSubmit={handleSubmit}
+        // handleSubmit={handleSubmit}
       /> 
       { props.queryApi.length > 0 || query.length > 0 ? 
         <Card 
@@ -97,8 +112,7 @@ function Main (props) {
          ""
        } 
         <Footer 
-          themes={props.activeTheme}
-          className={props.queryApi.length > 0 ? "" : "lot-text"} 
+          themes={props.activeTheme} 
         />
     </ContainerS>
   );

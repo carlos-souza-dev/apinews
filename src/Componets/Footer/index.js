@@ -4,7 +4,12 @@ import { FooterS } from "./style"
 const Footer = (props) => {
 
     return(
-        <FooterS themes={props.themes} className={`${props.className}`} > ApiNews - &copy;Copyright </FooterS>
+        <FooterS 
+            themes={props.themes} 
+            className={`${props.className}`} 
+        > 
+            ApiNews - &copy;Copyright 
+        </FooterS>
         );
 };
 

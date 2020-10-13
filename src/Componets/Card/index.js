@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { WrapperS, CardS, ContainerS } from "./style";
 import Button from "../Button";
+import Footer from "../Footer";
 import ImageDefault from "../../assets/image-default.jpeg"
 
 const Card = (props) => {
@@ -35,14 +36,12 @@ const Card = (props) => {
         }
     };
 
-    console.log("Api",props.queryApi)
-
     if (numResponse === news) {
         props.themes.display = "none";
     }
 
-    const qtdeNews = Array.from({ length: news }, (v, i) => props.queryApi[i]);
-
+    const qtdeNews = Array.from({ length: numResponse < 5 ? numResponse : news  }, (v, i) => props.queryApi[i]);
+    console.log(qtdeNews)
     return (
         <WrapperS themes={props.themes}>
             <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >

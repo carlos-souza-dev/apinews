@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const WrapperS = styled.div`
+    height: calc(100vh - 50px);
     padding-top: 60px;
     padding-bottom: 50px;
     background: ${({themes}) => `${themes.background}`};
-
+    background-color: yellow;
     @media (max-width: 414px){
         padding-top: 0px;
     }  
@@ -14,7 +15,7 @@ export const WrapperS = styled.div`
         background: ${({themes}) => `${themes.tertiary1}`};
         border: .7px solid ${({themes}) => `${themes.tertiary1}`};
         display: ${({themes}) => `${themes.display}`};
-        margin: 0 auto;
+        margin: 0 auto 20px auto; 
 
         &:hover {
             background: ${({themes}) => `${themes.tertiary}`};
@@ -27,9 +28,13 @@ export const ContainerS = styled.div `
     margin: 0 auto;
     padding: 16px 0 52px 0;
     background: ${({themes}) => `${themes.background}`};
-
+    
     @media (max-width: 414px){
         padding: 44px 0 52px 0;
+    }
+
+    @media (max-width: 768px){
+        padding-bottom: 0px; 
     }  
 
     .container__news {
@@ -67,12 +72,11 @@ export const ContainerS = styled.div `
         
         @media (max-width: 1024px){
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
         }
 
         @media (max-width: 768px){
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-template-rows: auto;
+            /* grid-template-rows: repeat(3, 1fr); */
         }
 
         @media (max-width: 414px){

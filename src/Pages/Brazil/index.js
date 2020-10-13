@@ -13,7 +13,7 @@ function Brasil() {
       ? `http://localhost:5000/api/brasil`
       : `https://react-apinews.herokuapp.com/api/brasil`
   )
-  
+
   useEffect( () => {
 
     const getNewsapi = async () => {

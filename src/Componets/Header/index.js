@@ -39,13 +39,10 @@ function Header(props) {
             ))}
           </ul>
         </nav>
-        <form className="from-search" onSubmit={props.onSubmit} >
+        <form className="from-search" onSubmit={props.onSubmit}>
           <input className="search-input" placeholder="Pesquisar" name="search" type="text" value={props.input} onChange={props.handleInput} />
           <Button
-            btnFunc={() => {
-              props.handleSubmit();
-              props.queryFunc();
-            }}
+            btnFunc={props.queryFunction}
             themes={props.themes}
             value={"Pesquisar"}
           />

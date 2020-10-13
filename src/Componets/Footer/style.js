@@ -8,9 +8,5 @@ export const FooterS = styled.footer `
     text-align: center;
     color: ${({themes}) => `${themes.label}`};
     background-color: ${({themes}) => `${themes.primary}`};
-
-    &.lot-text {
-        position: absolute;
-        bottom: 0;
-    }
+    
 `;

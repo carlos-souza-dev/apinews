@@ -8,6 +8,8 @@ const path = require('path');
 const { Console } = require('console');
 const port = process.env.PORT || 5000;
 const app = express();
+const axios = require('axios')
+const NewsAPI = require('newsapi');
 
 app.use(cors());
 app.use(bodyParse.json());
@@ -36,22 +38,13 @@ app.get('/api', function (req, res) {
 
 app.get('/api/brasil', function (req, res) {
 
-  const response = fetch(`${process.env.APP_URL}top-headlines?country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
+  const response = fetch(`${process.env.APP_URL}top-headlines?country=pt&apiKey=${process.env.APP_KEY}&pageSize=100`);
   response.then((res)=>{
     return res.json();
   }).then((json)=>{
     res.send(json)
   })
 });
-
-// app.post('/api/brasil/search', async  (req, res) => {
-
-//   const text = await ""+req.body.text;
-  
-//   const response = await fetch(`${process.env.APP_URL}top-headlines?q=${text}&country=pt&from=${today}&to=${today}&apiKey=${process.env.APP_KEY}&pageSize=100`);
-//   const data = await response.json();
-//   res.send(data)
-// });
 
 app.get('/api/franca', function (req, res) {
 

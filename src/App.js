@@ -18,7 +18,7 @@ function App() {
           <Route path="/brasil" exact component={Brazil}/>
           <Route path="/franca" exact component={France}/>
           <Route path="/usa" exact component={Usa}/>
-          <Redirect from="*" to="/" />
+          {/* <Redirect from="*" to="/" /> */}
         </Switch>
     </BrowserRouter>
   );
