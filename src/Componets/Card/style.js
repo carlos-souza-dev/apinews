@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const WrapperS = styled.div`
-    height: calc(100vh - 50px);
     padding-top: 60px;
     padding-bottom: 50px;
     background: ${({themes}) => `${themes.background}`};
-    background-color: yellow;
+    
     @media (max-width: 414px){
         padding-top: 0px;
     }  
@@ -16,6 +15,10 @@ export const WrapperS = styled.div`
         border: .7px solid ${({themes}) => `${themes.tertiary1}`};
         display: ${({themes}) => `${themes.display}`};
         margin: 0 auto 20px auto; 
+        position: absolute;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
 
         &:hover {
             background: ${({themes}) => `${themes.tertiary}`};
@@ -25,8 +28,9 @@ export const WrapperS = styled.div`
 `;
 
 export const ContainerS = styled.div `
+    height: auto;
     margin: 0 auto;
-    padding: 16px 0 52px 0;
+    padding: 16px 0 82px 0;
     background: ${({themes}) => `${themes.background}`};
     
     @media (max-width: 414px){
@@ -59,7 +63,7 @@ export const ContainerS = styled.div `
         &.card--block{
         width: 100%;
         height: auto;
-        padding: 60px 40px;
+        padding: 60px 40px 100px 40px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(1, 1fr);

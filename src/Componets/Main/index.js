@@ -6,10 +6,6 @@ import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
 
-const date = new Date();
-const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-
-
 function Main (props) {
 
   const [ style, setStyle ] = useState(true);
@@ -17,14 +13,6 @@ function Main (props) {
   const [ input, setInput ] = useState('');
   const [ query, setQuery ] = useState([]);
   
-  // const queryFunc = async () => {
-  //     const response = await axios.post(`http://localhost:5000/api/brasil/search`);
-  //     // const response = await fetch(`http://localhost:5000/api/brasil/search`);
-  //     // const data = await response.json();
-  //     console.log("Resposta",response.data.articles)
-  //     setQuery(response.data.articles);
-  //   };
-
   const queryFunction = () => {
     setQuery([])
     let inputLower = input.toLowerCase;
@@ -46,12 +34,6 @@ function Main (props) {
   const handleInput = (e) => {
     setInput(e.target.value);
   }
-
-  // const handleSubmit = () => {
-  //   axios.post(`http://localhost:5000/api/brasil/search`, {
-  //     text: input,      
-  //   });
-  // };
 
   useEffect(() => {
     const currentStyle = localStorage.getItem("style");
@@ -99,7 +81,6 @@ function Main (props) {
         handleInput={handleInput}
         queryFunction={queryFunction}
         input={input}
-        // handleSubmit={handleSubmit}
       /> 
       { props.queryApi.length > 0 || query.length > 0 ? 
         <Card 
