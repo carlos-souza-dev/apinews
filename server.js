@@ -8,8 +8,6 @@ const path = require('path');
 const { Console } = require('console');
 const port = process.env.PORT || 5000;
 const app = express();
-const axios = require('axios')
-const NewsAPI = require('newsapi');
 
 app.use(cors());
 app.use(bodyParse.json());
