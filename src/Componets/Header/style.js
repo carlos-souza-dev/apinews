@@ -146,6 +146,10 @@ export const HeaderS = styled.header `
 
         }
 
+        button {
+            display: block;
+        }
+
         @media (max-width: 1024px){
             width: 44%;
         }

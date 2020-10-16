@@ -25,6 +25,22 @@ export const WrapperS = styled.div`
             border: .7px solid ${({themes}) => `${themes.tertiary}`};
         }
     }
+
+    .container__status {
+        color: ${({themes}) => `${themes.description}`};
+        display: block;
+        margin-top: 16px;
+        text-align: center;
+        z-index: 2;
+
+        @media (max-width: 768px){
+            font-size: 14px;
+        }
+
+        @media (max-width: 414px){
+            margin-top: 24px;
+        }  
+    }
 `;
 
 export const ContainerS = styled.div `
@@ -32,14 +48,15 @@ export const ContainerS = styled.div `
     margin: 0 auto;
     padding: 16px 0 82px 0;
     background: ${({themes}) => `${themes.background}`};
-    
-    @media (max-width: 414px){
-        padding: 44px 0 52px 0;
-    }
 
     @media (max-width: 768px){
-        padding-bottom: 0px; 
+        padding-bottom: 0px;
     }  
+    
+    @media (max-width: 414px){
+        padding-top: 44px;
+        padding-bottom: 52px; 
+    }
 
     .container__news {
         color: ${({themes}) => `${themes.alert}`};

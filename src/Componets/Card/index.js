@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { WrapperS, CardS, ContainerS } from "./style";
 import Button from "../Button";
-import Footer from "../Footer";
 import ImageDefault from "../../assets/image-default.jpeg"
 
 const Card = (props) => {
@@ -36,16 +35,19 @@ const Card = (props) => {
         }
     };
 
-    if (numResponse === news) {
+    if (numResponse <= news) {
         props.themes.display = "none";
+    } else {
+        props.themes.display = "block";
     }
 
     const qtdeNews = Array.from({ length: numResponse < 5 ? numResponse : news  }, (v, i) => props.queryApi[i]);
-    console.log(qtdeNews)
+    
     return (
         <WrapperS themes={props.themes}>
+            <span className="container__status">{props.status}</span>
             <ContainerS themes={props.themes} className={props.styleContainer ? `${props.styleContainer}` : "card--block"} >
-                <span className="container__news" style={{ display: `${(numResponse - news) < 1 ? "none" : "block"}` }}  >{numResponse >= 5 ? `+${numResponse - news} Notícia(s)` : numResponse}</span>
+            <span className="container__news" style={{ display: `${(numResponse - news) < 1 ? "none" : "block"}` }}  >{numResponse >= 5 ? `+${numResponse - news} Notícia(s)` : numResponse}</span>
                 {qtdeNews.map((notice, indice) => (
                     <CardS themes={props.themes}
                         className={`card   

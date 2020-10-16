@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 // Componentes
 import { ContainerS } from "./style"
 import  Header  from "../Header";
@@ -12,6 +12,7 @@ function Main (props) {
   const [ list, setList ] = useState([]);
   const [ input, setInput ] = useState('');
   const [ query, setQuery ] = useState([]);
+  const [ status, setStatus ] = useState('');
   
   const queryFunction = () => {
     setQuery([])
@@ -22,14 +23,17 @@ function Main (props) {
 
     props.queryApi.forEach(news => {
       if(news.title.indexOf(inputLower) >= 0 
-        || news.title.indexOf(inputUper) >= 0
-        || news.title.indexOf(inputFirts) >= 0){
-          newQuery.push(news)
-        }
-      });
-      setQuery(newQuery)
-    console.log(query)
+      || news.title.indexOf(inputUper) >= 0
+      || news.title.indexOf(inputFirts) >= 0
+      || news.title.indexOf(input) >= 0){
+        newQuery.push(news)
+        console.log(news)
+      }
+    });
+    setQuery(newQuery)
+    input === "" ? setStatus('') : newQuery.length > 0 ? setStatus(`${newQuery.length} resultado(s) para '${input}'`) : setStatus(`Nenhum resultado para '${input}'`)
   }
+
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -88,7 +92,8 @@ function Main (props) {
           getLikes={getLikes}
           themes={props.activeTheme}
           btnFunc={props.funcMore} 
-          styleContainer={style} 
+          styleContainer={style}
+          status={status} 
           queryApi={query.length > 0 ? query : props.queryApi} /> :
          ""
        } 
