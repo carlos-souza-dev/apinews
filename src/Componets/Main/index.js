@@ -5,6 +5,7 @@ import { ContainerS } from "./style"
 import  Header  from "../Header";
 import Card from "../Card";
 import Footer from "../Footer";
+import { CardS } from "../Card/style";
 
 function Main (props) {
 
@@ -86,6 +87,12 @@ function Main (props) {
         queryFunction={queryFunction}
         input={input}
       /> 
+        <div className="google-left">
+          <script data-ad-client="ca-pub-9126549779252099" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        </div>
+        <div className="google-right">
+          <script data-ad-client="ca-pub-9126549779252099" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        </div>
       { props.queryApi.length > 0 || query.length > 0 ? 
         <Card 
           list={list}
